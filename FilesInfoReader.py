@@ -17,6 +17,8 @@ limitations under the License.
 import os
 import time
 import binascii
+import logging
+import logging.handlers
 import pandas as pd
 
 __author__ = 'ppiazi'
@@ -30,21 +32,25 @@ class FilesInfoReader:
         self.FlagCheckSum = True
         self.rootPath = None
 
+        # Setting up logging module
+        logging.basicConfig(level=logging.DEBUG)
+        self.logger = logging.getLogger("FilesInfoReader")
+
     def setRootPath(self, rootPath):
         self.rootPath = rootPath
 
     def iterate(self):
         for (root, dirs, files) in os.walk(self.rootPath):
-            print("Entering %s " % (root))
+            self.logger.info("Entering %s " % (root))
 
             for afile in files:
-                print("\tReading file info : %s ... " % afile, end=" ")
+                self.logger.info("\tReading file info : %s" % afile)
+
                 full_file_name = os.path.join(root, afile)
                 check_sum = self.getFileCheckSum(full_file_name)
                 modified_time_str = self.getFileMTime(full_file_name)
                 file_size = self.getFileSize(full_file_name)
                 source_code_line_count = self.getLineCount(full_file_name)
-                print("done")
 
                 self.file_info_list.loc[full_file_name] = [check_sum, modified_time_str, file_size, source_code_line_count]
 
@@ -108,7 +114,7 @@ class FilesInfoReader:
 
     def printAll(self):
         for index, afile_info in self.file_info_list.iterrows():
-            print("%s %s %s %d" % (index, afile_info["CheckSum"], afile_info["MTime"], afile_info["Size"]))
+            self.logger.info("%s %s %s %d" % (index, afile_info["CheckSum"], afile_info["MTime"], afile_info["Size"]))
 
     def saveAsCsv(self, file_name):
         self.file_info_list.to_csv(file_name)
