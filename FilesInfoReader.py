@@ -45,12 +45,19 @@ class FilesInfoReader:
                 full_file_name = os.path.join(root, afile)
 
                 file_info = FileInfo.FileInfo(full_file_name)
-                file_info.readInfo()
 
-                check_sum = file_info.getFileCheckSum()
-                modified_time_str = file_info.getFileMTime()
-                file_size = file_info.getFileSize()
-                source_code_line_count = file_info.getFileLineCount()
+                try:
+                    file_info.readInfo()
+
+                    check_sum = file_info.getFileCheckSum()
+                    modified_time_str = file_info.getFileMTime()
+                    file_size = file_info.getFileSize()
+                    source_code_line_count = file_info.getFileLineCount()
+                except:
+                    check_sum = "#ERROR"
+                    modified_time_str = "#ERROR"
+                    file_size = 0
+                    source_code_line_count = 0
 
                 self.file_info_list.loc[full_file_name] = [check_sum, modified_time_str, file_size, source_code_line_count]
 
