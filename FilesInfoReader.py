@@ -47,8 +47,15 @@ class FilesInfoReader:
         return check_sum_hex
 
     def getFileMTime(self, file_name):
+        """
+        파일의 수정된 날짜 및 시간을 반환한다.
+        os.path.getmtime 을 사용한다.
+
+        :param file_name:
+        :return:
+        """
         mtime = os.path.getmtime(file_name)
-        t = time.gmtime(mtime)
+        t = time.localtime(mtime)
         mtime_str = time.strftime("%Y-%m-%d %H:%M:%S", t)
         return mtime_str
 
