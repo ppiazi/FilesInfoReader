@@ -6,9 +6,11 @@ import pandas as pd
 
 __author__ = 'ppiazi'
 
+SOURCE_CODE_EXT = [".c", "cpp", ".h", ".hpp", ".py", ".cs", ".java"]
+
 class FilesInfoReader:
     def __init__(self):
-        self.file_info_list = pd.DataFrame(columns=["CheckSum", "MTime", "Size"])
+        self.file_info_list = pd.DataFrame(columns=["CheckSum", "MTime", "Size", "LineCount"])
         self.FlagModifiedDate = True
         self.FlagCheckSum = True
         self.rootPath = None
@@ -26,9 +28,10 @@ class FilesInfoReader:
                 check_sum = self.getFileCheckSum(full_file_name)
                 modified_time_str = self.getFileMTime(full_file_name)
                 file_size = self.getFileSize(full_file_name)
+                source_code_line_count = self.getLineCount(full_file_name)
                 print("done")
 
-                self.file_info_list.loc[full_file_name] = [check_sum, modified_time_str, file_size]
+                self.file_info_list.loc[full_file_name] = [check_sum, modified_time_str, file_size, source_code_line_count]
 
     def getFileCheckSum(self, file_name):
         """
@@ -68,6 +71,25 @@ class FilesInfoReader:
         """
         statinfo = os.stat(file_name)
         return statinfo.st_size
+
+    def getLineCount(self, file_name):
+        """
+        C/C++/C#/Java 등 소스코드의 라인수를 반환한다.
+
+        :param file_name:
+        :return:
+        """
+        ext = os.path.splitext(file_name)[-1]
+        line_count = 0
+
+        if ext.lower() in SOURCE_CODE_EXT:
+            f = open(file_name, "rb")
+            file_lines = f.readlines()
+            f.close()
+
+            line_count = len(file_lines)
+
+        return line_count
 
     def printAll(self):
         for index, afile_info in self.file_info_list.iterrows():
