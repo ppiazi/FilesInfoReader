@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 import os
 import time
 import hashlib
+import binascii
 import pandas as pd
 
 __author__ = 'ppiazi'
@@ -10,6 +12,7 @@ class FilesInfoReader:
         self.file_info_list = pd.DataFrame(columns=["CheckSum", "MTime", "Size"])
         self.FlagModifiedDate = True
         self.FlagCheckSum = True
+        self.rootPath = None
 
     def setRootPath(self, rootPath):
         self.rootPath = rootPath
@@ -29,10 +32,19 @@ class FilesInfoReader:
                 self.file_info_list.loc[full_file_name] = [check_sum, modified_time_str, file_size]
 
     def getFileCheckSum(self, file_name):
+        """
+        파일의 CRC32를 이용한 체크섬을 계산한다.
+        binascii 모듈을 사용한다.
+
+        :param file_name: 파일 이름
+        :return: CRC32 결과
+        """
         f = open(file_name, "rb")
-        check_sum = hashfile(f, hashlib.sha256())
+        file_data = f.read()
+        check_sum_int = binascii.crc32(file_data) & 0xFFFFFFFF
+        check_sum_hex = hex(check_sum_int).upper()
         f.close()
-        return check_sum
+        return check_sum_hex
 
     def getFileMTime(self, file_name):
         mtime = os.path.getmtime(file_name)
@@ -41,6 +53,13 @@ class FilesInfoReader:
         return mtime_str
 
     def getFileSize(self, file_name):
+        """
+        파일의 크기를 반환한다.
+        os.stat 를 사용한다.
+
+        :param file_name:
+        :return:
+        """
         statinfo = os.stat(file_name)
         return statinfo.st_size
 
@@ -50,10 +69,3 @@ class FilesInfoReader:
 
     def saveAsCsv(self, file_name):
         self.file_info_list.to_csv(file_name)
-
-def hashfile(afile, hasher, blocksize=65535):
-    buf = afile.read(blocksize)
-    while len(buf) > 0:
-        hasher.update(buf)
-        buf = afile.read(blocksize)
-    return hasher.hexdigest()

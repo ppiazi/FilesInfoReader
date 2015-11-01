@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import os
 from FilesInfoReader import *
@@ -5,7 +6,7 @@ from FilesInfoReader import *
 __author__ = 'ppiazi'
 
 def printUsage():
-    print("FileInfoReader.py [folder] [output file]")
+    print("FilesInfoReader.py [folder] [output file]")
 
 if __name__ == "__main__":
 
@@ -16,7 +17,7 @@ if __name__ == "__main__":
     root_path = sys.argv[1]
     output_file = sys.argv[2]
 
-    fig = FilesInfoReader()
-    fig.setRootPath(root_path)
-    fig.iterate()
-    fig.saveAsCsv(output_file)
+    fir = FilesInfoReader()
+    fir.setRootPath(root_path)
+    fir.iterate()
+    fir.saveAsCsv(output_file)
