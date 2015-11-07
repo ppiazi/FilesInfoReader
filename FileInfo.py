@@ -18,10 +18,14 @@ limitations under the License.
 import os
 import time
 import binascii
+import hashlib
 
 __author__ = 'ppiazi'
 
 SOURCE_CODE_EXT = [".c", "cpp", ".h", ".hpp", ".py", ".cs", ".java"]
+HASH_CODE_CRC32 = 0
+HASH_CODE_MD5 = 1
+HASH_CODE_SHA1 = 2
 
 class FileInfo:
     def __init__(self, full_file):
@@ -34,10 +38,16 @@ class FileInfo:
         self.file_info["LineCount"] = 0
         self.file_handler = None
 
-    def readInfo(self):
+    def readInfo(self, hash_code=HASH_CODE_CRC32):
         self.file_handler = open(self.full_file, "rb")
 
-        self.readFileCheckSum()
+        if hash_code == HASH_CODE_MD5:
+            self.readFileMD5Hash()
+        elif hash_code == HASH_CODE_SHA1:
+            self.readFileSHA1Hash()
+        else:
+            self.readFileCRC32Hash()
+
         self.readFileMTime()
         self.readFileSize()
         self.readLineCount()
@@ -56,7 +66,7 @@ class FileInfo:
     def getFileLineCount(self):
         return self.file_info["LineCount"]
 
-    def readFileCheckSum(self):
+    def readFileCRC32Hash(self):
         """
         파일의 CRC32를 이용한 체크섬을 계산한다.
         binascii 모듈을 사용한다.
@@ -69,6 +79,40 @@ class FileInfo:
         file_data = self.file_handler.read()
         check_sum_int = binascii.crc32(file_data) & 0xFFFFFFFF
         check_sum_hex = hex(check_sum_int).upper()
+
+        self.file_info["CheckSum"] = check_sum_hex
+
+    def readFileSHA1Hash(self):
+        """
+        파일의 SHA-1을 이용한 체크섬을 계산한다.
+        hashlib 모듈을 사용한다.
+
+        :param file_name: 파일 이름
+        :return: SHA-1 결과
+        """
+        # reset file pointer
+        self.file_handler.seek(0)
+        file_data = self.file_handler.read()
+        sha1 = hashlib.sha1()
+        sha1.update(file_data)
+        check_sum_hex = sha1.hexdigest().upper()
+
+        self.file_info["CheckSum"] = check_sum_hex
+
+    def readFileMD5Hash(self):
+        """
+        파일의 MD5을 이용한 체크섬을 계산한다.
+        hashlib 모듈을 사용한다.
+
+        :param file_name: 파일 이름
+        :return: MD5 결과
+        """
+        # reset file pointer
+        self.file_handler.seek(0)
+        file_data = self.file_handler.read()
+        md5 = hashlib.md5()
+        md5.update(file_data)
+        check_sum_hex = md5.hexdigest().upper()
 
         self.file_info["CheckSum"] = check_sum_hex
 
