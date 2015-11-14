@@ -16,23 +16,37 @@ limitations under the License.
 """
 import sys
 import os
+import getopt
 from FilesInfoReader import *
 
 __author__ = 'ppiazi'
 
 def printUsage():
-    print("FilesInfoReader.py [folder] [output file]")
+    print("FilesInfoReader.py -f [folder] -o [output file] -h [crc32|md5|sha1]")
 
 if __name__ == "__main__":
 
-    if len(sys.argv) != 3:
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:")
+
+    p_folder = None
+    p_output = None
+    p_hash = "crc32"
+
+    for op, p in optlist:
+        if op == "-f":
+            p_folder = p
+        elif op == "-o":
+            p_output = p
+        elif op == "-h":
+            p_hash = p
+        else:
+            print("Invalid Argument : %s / %s" % (op, p))
+
+    if p_folder == None or p_output == None:
         printUsage()
         os._exit(1)
 
-    root_path = sys.argv[1]
-    output_file = sys.argv[2]
-
-    fir = FilesInfoReader()
-    fir.setRootPath(root_path)
+    fir = FilesInfoReader(p_hash)
+    fir.setRootPath(p_folder)
     fir.iterate()
-    fir.saveAsCsv(output_file)
+    fir.saveAsCsv(p_output)

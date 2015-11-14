@@ -23,11 +23,18 @@ import FileInfo
 __author__ = 'ppiazi'
 
 class FilesInfoReader:
-    def __init__(self):
+    def __init__(self, hash_code = "crc32"):
         self.file_info_list = pd.DataFrame(columns=["CheckSum", "MTime", "Size", "LineCount"])
         self.FlagModifiedDate = True
         self.FlagCheckSum = True
         self.rootPath = None
+
+        if hash_code == "md5":
+            self.hash_code = FileInfo.HASH_CODE_MD5
+        elif hash_code == "sha1":
+            self.hash_code = FileInfo.HASH_CODE_SHA1
+        else:
+            self.hash_code = FileInfo.HASH_CODE_CRC32
 
         # Setting up logging module
         logging.basicConfig(level=logging.DEBUG)
@@ -47,7 +54,7 @@ class FilesInfoReader:
                 file_info = FileInfo.FileInfo(full_file_name)
 
                 try:
-                    file_info.readInfo()
+                    file_info.readInfo(self.hash_code)
 
                     check_sum = file_info.getFileCheckSum()
                     modified_time_str = file_info.getFileMTime()
