@@ -78,7 +78,7 @@ class FileInfo:
         self.file_handler.seek(0)
         file_data = self.file_handler.read()
         check_sum_int = binascii.crc32(file_data) & 0xFFFFFFFF
-        check_sum_hex = hex(check_sum_int).upper()
+        check_sum_hex = "0x%08X" % check_sum_int
 
         self.file_info["CheckSum"] = check_sum_hex
 
