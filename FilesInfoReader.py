@@ -43,7 +43,7 @@ class FilesInfoReader:
     def setRootPath(self, rootPath):
         self.rootPath = rootPath
 
-    def iterate(self):
+    def iterate(self, SourceCodeOnly = False):
         for (root, dirs, files) in os.walk(self.rootPath):
             self.logger.info("Entering %s " % (root))
 
@@ -52,6 +52,9 @@ class FilesInfoReader:
                 full_file_name = os.path.join(root, afile)
 
                 file_info = FileInfo.FileInfo(full_file_name)
+
+                if SourceCodeOnly and file_info.getFileType() != FileInfo.FILE_TYPE_SOURCECODE:
+                    continue
 
                 try:
                     file_info.readInfo(self.hash_code)

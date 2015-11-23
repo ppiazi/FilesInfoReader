@@ -22,15 +22,21 @@ from FilesInfoReader import *
 __author__ = 'ppiazi'
 
 def printUsage():
-    print("FilesInfoReader.py -f [folder] -o [output file] -h [crc32|md5|sha1]")
+    print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s]")
+    print("    Options:")
+    print("    -f : set a target folder")
+    print("    -o : set a file for result")
+    print("    -h : set hash method among crc32, md5, sha1")
+    print("    -s, --source-only : read source files only")
 
 if __name__ == "__main__":
 
-    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:")
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:s", ["source-only",])
 
     p_folder = None
     p_output = None
     p_hash = "crc32"
+    p_sourcecode_only = False
 
     for op, p in optlist:
         if op == "-f":
@@ -39,6 +45,8 @@ if __name__ == "__main__":
             p_output = p
         elif op == "-h":
             p_hash = p
+        elif op in ("-s", "--source-only"):
+            p_sourcecode_only = True
         else:
             print("Invalid Argument : %s / %s" % (op, p))
 
@@ -48,5 +56,5 @@ if __name__ == "__main__":
 
     fir = FilesInfoReader(p_hash)
     fir.setRootPath(p_folder)
-    fir.iterate()
+    fir.iterate(p_sourcecode_only)
     fir.saveAsCsv(p_output)

@@ -22,7 +22,9 @@ import hashlib
 
 __author__ = 'ppiazi'
 
-SOURCE_CODE_EXT = [".c", "cpp", ".h", ".hpp", ".py", ".cs", ".java"]
+FILE_TYPE_NORMAL = 0
+FILE_TYPE_SOURCECODE = 1
+SOURCE_CODE_EXT = [".c", ".cpp", ".cxx", ".h", ".hpp", ".py", ".cs", ".java"]
 HASH_CODE_CRC32 = 0
 HASH_CODE_MD5 = 1
 HASH_CODE_SHA1 = 2
@@ -37,6 +39,19 @@ class FileInfo:
         self.file_info["FileSize"] = 0
         self.file_info["LineCount"] = 0
         self.file_handler = None
+        self.file_type = FILE_TYPE_NORMAL
+        self.checkFileType()
+
+    def checkFileType(self):
+        ext = os.path.splitext(self.full_file)[-1]
+
+        if ext.lower() in SOURCE_CODE_EXT:
+            self.file_type = FILE_TYPE_SOURCECODE
+        else:
+            self.file_type = FILE_TYPE_NORMAL
+
+    def getFileType(self):
+        return self.file_type
 
     def readInfo(self, hash_code=HASH_CODE_CRC32):
         self.file_handler = open(self.full_file, "rb")
@@ -149,10 +164,9 @@ class FileInfo:
         :param file_name:
         :return:
         """
-        ext = os.path.splitext(self.full_file)[-1]
         line_count = 0
 
-        if ext.lower() in SOURCE_CODE_EXT:
+        if self.file_type == FILE_TYPE_SOURCECODE:
             # reset file pointer
             self.file_handler.seek(0)
             file_lines = self.file_handler.readlines()
