@@ -20,9 +20,11 @@ import getopt
 from FilesInfoReader import *
 
 __author__ = 'ppiazi'
+__version__ = 'v1.1.1'
 
 def printUsage():
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s]")
+    print("    Version %s" % __version__)
     print("    Options:")
     print("    -f : set a target folder")
     print("    -o : set a file for result")
