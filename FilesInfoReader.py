@@ -24,7 +24,7 @@ __author__ = 'ppiazi'
 
 class FilesInfoReader:
     def __init__(self, hash_code = "crc32"):
-        self.file_info_list = pd.DataFrame(columns=["CheckSum", "MTime", "Size", "LineCount"])
+        self.file_info_list = pd.DataFrame(columns=["FileName", "Folder", "CheckSum", "MTime", "Size", "LineCount"])
         self.FlagModifiedDate = True
         self.FlagCheckSum = True
         self.rootPath = None
@@ -59,6 +59,7 @@ class FilesInfoReader:
                 try:
                     file_info.readInfo(self.hash_code)
 
+                    folder_name, file_name = os.path.split(full_file_name)
                     check_sum = file_info.getFileCheckSum()
                     modified_time_str = file_info.getFileMTime()
                     file_size = file_info.getFileSize()
@@ -69,7 +70,7 @@ class FilesInfoReader:
                     file_size = 0
                     source_code_line_count = 0
 
-                self.file_info_list.loc[full_file_name] = [check_sum, modified_time_str, file_size, source_code_line_count]
+                self.file_info_list.loc[full_file_name] = [file_name, folder_name, check_sum, modified_time_str, file_size, source_code_line_count]
 
     def printAll(self):
         for index, afile_info in self.file_info_list.iterrows():
