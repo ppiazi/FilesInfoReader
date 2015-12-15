@@ -41,9 +41,21 @@ class FilesInfoReader:
         self.logger = logging.getLogger("FilesInfoReader")
 
     def setRootPath(self, rootPath):
+        """
+        Set the root path to be iterated
+
+        :param rootPath:
+        :return:
+        """
         self.rootPath = rootPath
 
     def iterate(self, SourceCodeOnly = False):
+        """
+        Start to iterate folders and gather file information.
+
+        :param SourceCodeOnly:
+        :return:
+        """
         for (root, dirs, files) in os.walk(self.rootPath):
             self.logger.info("Entering %s " % (root))
 
@@ -77,4 +89,10 @@ class FilesInfoReader:
             self.logger.info("%s %s %s %d" % (index, afile_info["CheckSum"], afile_info["MTime"], afile_info["Size"]))
 
     def saveAsCsv(self, file_name):
+        """
+        Save data as a csv fie
+
+        :param file_name:
+        :return:
+        """
         self.file_info_list.to_csv(file_name)
