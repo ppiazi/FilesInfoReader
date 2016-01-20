@@ -17,14 +17,14 @@ limitations under the License.
 import os
 import logging
 import logging.handlers
-import pandas as pd
+import FilesInfoDB
 import FileInfo
 
 __author__ = 'ppiazi'
 
 class FilesInfoReader:
     def __init__(self, hash_code = "crc32"):
-        self.file_info_list = pd.DataFrame(columns=["FileName", "Folder", "CheckSum", "MTime", "Size", "LineCount"])
+        self.file_info_list = FilesInfoDB.FilesInfoDB(columns=["FileName", "Folder", "CheckSum", "MTime", "Size", "LineCount"])
         self.FlagModifiedDate = True
         self.FlagCheckSum = True
         self.rootPath = None
@@ -77,12 +77,12 @@ class FilesInfoReader:
                     file_size = file_info.getFileSize()
                     source_code_line_count = file_info.getFileLineCount()
                 except:
-                    check_sum = "#ERROR"
-                    modified_time_str = "#ERROR"
+                    check_sum = "ERROR"
+                    modified_time_str = "ERROR"
                     file_size = 0
                     source_code_line_count = 0
 
-                self.file_info_list.loc[full_file_name] = [file_name, folder_name, check_sum, modified_time_str, file_size, source_code_line_count]
+                self.file_info_list.insert(full_file_name, [file_name, folder_name, check_sum, modified_time_str, file_size, source_code_line_count])
 
     def printAll(self):
         for index, afile_info in self.file_info_list.iterrows():
