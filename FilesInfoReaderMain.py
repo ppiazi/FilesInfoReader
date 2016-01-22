@@ -18,22 +18,25 @@ import sys
 import os
 import getopt
 from FilesInfoReader import *
+import FileInfo
 
 __author__ = 'ppiazi'
 __version__ = 'v1.1.2'
 
 def printUsage():
-    print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s]")
+    print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>]")
     print("    Version %s" % __version__)
     print("    Options:")
     print("    -f : set a target folder")
     print("    -o : set a file for result")
     print("    -h : set hash method among crc32, md5, sha1")
     print("    -s, --source-only : read source files only")
+    print("    -a : add <extension> into source file extension list")
+    print("        Example) -a asm -a pl")
 
 if __name__ == "__main__":
 
-    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:s", ["source-only",])
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sa:", ["source-only",])
 
     p_folder = None
     p_output = None
@@ -49,6 +52,10 @@ if __name__ == "__main__":
             p_hash = p
         elif op in ("-s", "--source-only"):
             p_sourcecode_only = True
+        elif op == "-a":
+            source_ext = "." + p
+            FileInfo.SOURCE_CODE_EXT.append(source_ext)
+            print(FileInfo.SOURCE_CODE_EXT)
         else:
             print("Invalid Argument : %s / %s" % (op, p))
 

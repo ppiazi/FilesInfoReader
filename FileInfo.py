@@ -24,7 +24,7 @@ __author__ = 'ppiazi'
 
 FILE_TYPE_NORMAL = 0
 FILE_TYPE_SOURCECODE = 1
-SOURCE_CODE_EXT = [".c", ".cpp", ".cxx", ".h", ".hpp", ".py", ".cs", ".java"]
+SOURCE_CODE_EXT = [".c", ".cpp", ".cxx", ".h", ".hpp", ".py", ".cs", ".java", ".asm", ".inl", ".hh"]
 HASH_CODE_CRC32 = 0
 HASH_CODE_MD5 = 1
 HASH_CODE_SHA1 = 2
