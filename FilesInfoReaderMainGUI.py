@@ -51,7 +51,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.EditTargetFolder.setText(folder)
 
     def showOutputFileDlg(self):
-        output_file = QtGui.QFileDialog.getSaveFileName(self, "Output File")
+        output_file, tmp = QtGui.QFileDialog.getSaveFileName(self, "Output File")
         self.EditOutput.setText(output_file)
 
     def readInfo(self):
