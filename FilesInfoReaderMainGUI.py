@@ -18,7 +18,7 @@ limitations under the License.
 import sys
 import os
 import qt4.MainDlg
-from PyQt4 import QtCore, QtGui
+from PySide import QtCore, QtGui
 import FileInfo
 import FilesInfoReader
 
