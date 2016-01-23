@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>FilesInfoReader GUI</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -62,7 +62,7 @@
       <item>
        <widget class="QLineEdit" name="EditOutput">
         <property name="text">
-         <string>.\output.xls</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -159,11 +159,6 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>TextOutput</zorder>
-  <zorder>label_2</zorder>
  </widget>
  <resources/>
  <connections/>
