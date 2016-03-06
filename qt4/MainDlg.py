@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainDlg.ui'
 #
-# Created: Sat Jan 23 21:22:01 2016
+# Created: Sat Jan 30 19:24:18 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,9 +12,9 @@ from PySide import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(501, 539)
+        Dialog.resize(501, 151)
         self.layoutWidget = QtGui.QWidget(Dialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 521))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 141))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setSizeConstraint(QtGui.QLayout.SetMaximumSize)
@@ -72,9 +72,6 @@ class Ui_Dialog(object):
         self.EditExtList.setObjectName("EditExtList")
         self.LayoutExtOnly.addWidget(self.EditExtList)
         self.verticalLayout.addLayout(self.LayoutExtOnly)
-        self.TextOutput = QtGui.QTextBrowser(self.layoutWidget)
-        self.TextOutput.setObjectName("TextOutput")
-        self.verticalLayout.addWidget(self.TextOutput)
         self.LayoutStartExitButton = QtGui.QHBoxLayout()
         self.LayoutStartExitButton.setObjectName("LayoutStartExitButton")
         self.BtnStart = QtGui.QPushButton(self.layoutWidget)
@@ -99,11 +96,6 @@ class Ui_Dialog(object):
         self.RadBtnSHA1.setText(QtGui.QApplication.translate("Dialog", "SHA1", None, QtGui.QApplication.UnicodeUTF8))
         self.ChkBoxExtOnly.setText(QtGui.QApplication.translate("Dialog", "Ext Only", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Dialog", "Extensions", None, QtGui.QApplication.UnicodeUTF8))
-        self.TextOutput.setHtml(QtGui.QApplication.translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Gulim\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.BtnStart.setText(QtGui.QApplication.translate("Dialog", "Start", None, QtGui.QApplication.UnicodeUTF8))
         self.BtnExit.setText(QtGui.QApplication.translate("Dialog", "Exit", None, QtGui.QApplication.UnicodeUTF8))
 
