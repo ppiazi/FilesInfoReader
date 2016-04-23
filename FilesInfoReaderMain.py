@@ -21,7 +21,7 @@ from FilesInfoReader import *
 import FileInfo
 
 __author__ = 'ppiazi'
-__version__ = 'v1.1.4'
+__version__ = 'v1.1.5'
 
 def printUsage():
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>]")
@@ -31,12 +31,13 @@ def printUsage():
     print("    -o : set a file for result")
     print("    -h : set hash method among crc32, md5, sha1")
     print("    -s, --source-only : read source files only")
+    print("    -e, --ext-only : read ext files only (currently same as --source-only option")
     print("    -a : add <extension> into source file extension list")
     print("        Example) -a asm -a pl")
 
 if __name__ == "__main__":
 
-    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sa:", ["source-only",])
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:", ["source-only","ext-only"])
 
     p_folder = None
     p_output = None
@@ -51,6 +52,8 @@ if __name__ == "__main__":
         elif op == "-h":
             p_hash = p
         elif op in ("-s", "--source-only"):
+            p_sourcecode_only = True
+        elif op in ("-e", "--ext-only"):
             p_sourcecode_only = True
         elif op == "-a":
             source_ext = "." + p
