@@ -31,7 +31,8 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.BtnStart.clicked.connect(self.readInfo)
         self.BtnExit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.ChkBoxExtOnly.stateChanged.connect(self.changeExtOnly)
-        self.EditExtList.setText(",".join(FileInfo.SOURCE_CODE_EXT))
+        self.EditSourceExtList.setText(",".join(FileInfo.SOURCE_CODE_EXT))
+        self.EditExtList.setText(",".join(FilesInfoReader.SEARCH_TARGET_EXT))
         self.EditOutput.setText("output.xls")
         self.RadBtnHashGroup = QtGui.QButtonGroup()
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
@@ -61,16 +62,24 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         if os.path.exists(target_folder) == False:
             self._warning("Invalid target folder")
             return
-        # check source code only option
-        source_code_only = False
+        # check ext only option
+        ext_only = False
         if self._extonly_flag == True:
-            source_code_only = True
+            ext_only = True
             try:
                 ext_list = self.EditExtList.text().split(",")
             except:
                 self._warning("Invalid ext list")
                 return
-            FileInfo.SOURCE_CODE_EXT = ext_list
+            FilesInfoReader.SEARCH_TARGET_EXT = ext_list
+
+        # check source code ext option
+        try:
+            src_ext_list = self.EditSourceExtList.text().split(",")
+        except:
+            self._warning("Invalid source ext list")
+            return
+        FileInfo.SOURCE_CODE_EXT = src_ext_list
 
         # check hash method
         if self.RadBtnCrc32.isChecked() == True:
@@ -84,10 +93,9 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
 
         fir = FilesInfoReader.FilesInfoReader(hash_method)
         fir.setRootPath(target_folder)
-        fir.iterate(source_code_only)
+        fir.iterate(ext_only)
         fir.saveAsCsv(self.EditOutput.text())
         self._info("Done")
-
 
     def _warning(self, msg):
         QtGui.QMessageBox.question(self, "Warning", msg, QtGui.QMessageBox.Yes)

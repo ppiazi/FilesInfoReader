@@ -33,6 +33,7 @@ class FileInfo:
     def __init__(self, full_file):
         self.full_file = full_file
         self.file_info = {}
+        self.file_ext = ""
         self.file_info["FilePath"] = self.full_file
         self.file_info["CheckSum"] = ""
         self.file_info["FileMTime"] = 0
@@ -43,12 +44,15 @@ class FileInfo:
         self.checkFileType()
 
     def checkFileType(self):
-        ext = os.path.splitext(self.full_file)[-1]
+        self.file_ext = os.path.splitext(self.full_file)[-1]
 
-        if ext.lower() in SOURCE_CODE_EXT:
+        if self.file_ext.lower() in SOURCE_CODE_EXT:
             self.file_type = FILE_TYPE_SOURCECODE
         else:
             self.file_type = FILE_TYPE_NORMAL
+
+    def getFileExt(self):
+        return self.file_ext
 
     def getFileType(self):
         return self.file_type

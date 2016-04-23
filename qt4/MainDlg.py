@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainDlg.ui'
 #
-# Created: Sat Jan 30 19:24:18 2016
+# Created: Sat Apr 23 14:43:43 2016
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,11 +12,12 @@ from PySide import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(501, 151)
+        Dialog.resize(501, 205)
         self.layoutWidget = QtGui.QWidget(Dialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 141))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 193))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget)
+        self.verticalLayout.setSpacing(8)
         self.verticalLayout.setSizeConstraint(QtGui.QLayout.SetMaximumSize)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -59,6 +60,15 @@ class Ui_Dialog(object):
         self.RadBtnSHA1.setObjectName("RadBtnSHA1")
         self.LayoutHashMethod.addWidget(self.RadBtnSHA1)
         self.verticalLayout.addLayout(self.LayoutHashMethod)
+        self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_4 = QtGui.QLabel(self.layoutWidget)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout.addWidget(self.label_4)
+        self.EditSourceExtList = QtGui.QLineEdit(self.layoutWidget)
+        self.EditSourceExtList.setObjectName("EditSourceExtList")
+        self.horizontalLayout.addWidget(self.EditSourceExtList)
+        self.verticalLayout.addLayout(self.horizontalLayout)
         self.LayoutExtOnly = QtGui.QHBoxLayout()
         self.LayoutExtOnly.setObjectName("LayoutExtOnly")
         self.ChkBoxExtOnly = QtGui.QCheckBox(self.layoutWidget)
@@ -94,6 +104,7 @@ class Ui_Dialog(object):
         self.RadBtnCrc32.setText(QtGui.QApplication.translate("Dialog", "CRC32", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnMD5.setText(QtGui.QApplication.translate("Dialog", "MD5", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnSHA1.setText(QtGui.QApplication.translate("Dialog", "SHA1", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Dialog", "Source Ext", None, QtGui.QApplication.UnicodeUTF8))
         self.ChkBoxExtOnly.setText(QtGui.QApplication.translate("Dialog", "Ext Only", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Dialog", "Extensions", None, QtGui.QApplication.UnicodeUTF8))
         self.BtnStart.setText(QtGui.QApplication.translate("Dialog", "Start", None, QtGui.QApplication.UnicodeUTF8))

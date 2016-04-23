@@ -22,6 +22,8 @@ import FileInfo
 
 __author__ = 'ppiazi'
 
+SEARCH_TARGET_EXT = FileInfo.SOURCE_CODE_EXT
+
 class FilesInfoReader:
     def __init__(self, hash_code = "crc32"):
         self.file_info_list = FilesInfoDB.FilesInfoDB(columns=["FileName", "Folder", "CheckSum", "MTime", "Size", "LineCount"])
@@ -49,11 +51,11 @@ class FilesInfoReader:
         """
         self.rootPath = rootPath
 
-    def iterate(self, SourceCodeOnly = False):
+    def iterate(self, ExtOnly = False):
         """
         Start to iterate folders and gather file information.
 
-        :param SourceCodeOnly:
+        :param ExtOnly:
         :return:
         """
         for (root, dirs, files) in os.walk(self.rootPath):
@@ -65,7 +67,7 @@ class FilesInfoReader:
 
                 file_info = FileInfo.FileInfo(full_file_name)
 
-                if SourceCodeOnly and file_info.getFileType() != FileInfo.FILE_TYPE_SOURCECODE:
+                if ExtOnly and file_info.getFileExt() not in SEARCH_TARGET_EXT:
                     continue
 
                 try:
