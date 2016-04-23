@@ -8,3 +8,11 @@
     * pyinstaller FilesInfoReaderMain.py --onefile
     * pyinstaller FilesInfoReaderMainGui.py --onefile
 3. dist 폴더에 실행파일이 생성될 것이다.
+
+# GUI 설명
+1. TargetFolder : 검색을 시작할 루트 폴더
+2. Output : 검색 결과를 저장할 파일 위치
+3. CRC32 / MD5 / SHA1 : Hash 계산 모드
+4. Source Ext : Line Count를 수행할 대상 확장자 리스트
+5. Ext Only : 특정 확장자만 검색할 경우 체크
+6. Extensions : 검색을 수행할 대상 확장자 리스트
