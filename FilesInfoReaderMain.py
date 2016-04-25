@@ -21,7 +21,7 @@ from FilesInfoReader import *
 import FileInfo
 
 __author__ = 'ppiazi'
-__version__ = 'v1.1.5'
+__version__ = 'v1.1.5r1'
 
 def printUsage():
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>]")

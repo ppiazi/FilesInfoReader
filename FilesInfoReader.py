@@ -26,7 +26,7 @@ SEARCH_TARGET_EXT = FileInfo.SOURCE_CODE_EXT
 
 class FilesInfoReader:
     def __init__(self, hash_code = "crc32"):
-        self.file_info_list = FilesInfoDB.FilesInfoDB(columns=["FileName", "Folder", "CheckSum", "MTime", "Size", "LineCount"])
+        self.file_info_list = FilesInfoDB.FilesInfoDB(columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"])
         self.FlagModifiedDate = True
         self.FlagCheckSum = True
         self.rootPath = None
@@ -84,7 +84,8 @@ class FilesInfoReader:
                     file_size = 0
                     source_code_line_count = 0
 
-                self.file_info_list.insert(full_file_name, [file_name, folder_name, check_sum, modified_time_str, file_size, source_code_line_count])
+                # columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
+                self.file_info_list.insert(full_file_name, [file_name, folder_name, modified_time_str, check_sum, file_size, source_code_line_count])
 
     def printAll(self):
         for index, afile_info in self.file_info_list.iterrows():
