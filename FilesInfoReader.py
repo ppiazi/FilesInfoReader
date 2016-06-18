@@ -70,10 +70,11 @@ class FilesInfoReader:
                 if ExtOnly and file_info.getFileExt().lower() not in SEARCH_TARGET_EXT:
                     continue
 
+                folder_name, file_name = os.path.split(full_file_name)
+
                 try:
                     file_info.readInfo(self.hash_code)
 
-                    folder_name, file_name = os.path.split(full_file_name)
                     check_sum = file_info.getFileCheckSum()
                     modified_time_str = file_info.getFileMTime()
                     file_size = file_info.getFileSize()
