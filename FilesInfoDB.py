@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import xlwt
+import xlsxwriter
 from collections import OrderedDict
 
 class FilesInfoDB:
@@ -30,8 +30,8 @@ class FilesInfoDB:
         sorted_db_list = sorted(sorted(self.db.items(), key=lambda x : x[0]))
         sorted_db = OrderedDict(sorted_db_list)
 
-        wbk = xlwt.Workbook()
-        sheet = wbk.add_sheet("Result", cell_overwrite_ok=True)
+        wbk = xlsxwriter.Workbook(file_name)
+        sheet = wbk.add_worksheet("Result")
 
         # make heading
         sheet.write(0, 0, "File Full Name")
@@ -52,4 +52,4 @@ class FilesInfoDB:
 
             r = r + 1
 
-        wbk.save(file_name)
+        wbk.close()

@@ -34,7 +34,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.ChkBoxExtOnly.stateChanged.connect(self.changeExtOnly)
         self.EditSourceExtList.setText(",".join(FileInfo.SOURCE_CODE_EXT))
         self.EditExtList.setText(",".join(FilesInfoReader.SEARCH_TARGET_EXT))
-        self.EditOutput.setText("output.xls")
+        self.EditOutput.setText("output.xlsx")
         self.RadBtnHashGroup = QtGui.QButtonGroup()
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
