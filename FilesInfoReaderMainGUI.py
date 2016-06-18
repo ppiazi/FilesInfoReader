@@ -21,6 +21,7 @@ import qt4.MainDlg
 from PySide import QtCore, QtGui
 import FileInfo
 import FilesInfoReader
+import FilesInfoReaderMain
 
 class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
     def __init__(self, parent=None):
@@ -38,6 +39,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
+        self.setWindowTitle("FilesInfoReader - %s" % (FilesInfoReaderMain.__version__))
         self._extonly_flag = False
 
     def changeExtOnly(self, state):
