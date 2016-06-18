@@ -67,7 +67,7 @@ class FilesInfoReader:
 
                 file_info = FileInfo.FileInfo(full_file_name)
 
-                if ExtOnly and file_info.getFileExt() not in SEARCH_TARGET_EXT:
+                if ExtOnly and file_info.getFileExt().lower() not in SEARCH_TARGET_EXT:
                     continue
 
                 try:
