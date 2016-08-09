@@ -24,3 +24,6 @@
 4. Source Ext : Line Count를 수행할 대상 확장자 리스트
 5. Ext Only : 특정 확장자만 검색할 경우 체크
 6. Extensions : 검색을 수행할 대상 확장자 리스트
+
+# 최신 릴리즈
+ - https://github.com/ppiazi/FilesInfoReader/releases
