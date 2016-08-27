@@ -17,13 +17,18 @@ limitations under the License.
 import sys
 import os
 import getopt
-from FilesInfoReader import *
 import FileInfo
 
-__author__ = 'ppiazi'
-__version__ = 'v1.1.5r2'
+from FilesInfoReader import FilesInfoReader
 
-def printUsage():
+__author__ = 'ppiazi'
+__version__ = 'v1.1.5r3'
+
+def print_usage():
+    """
+    사용법에 대한 내용을 콘솔에 출력한다.
+    :return:
+    """
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>]")
     print("    Version %s" % __version__)
     print("    Options:")
@@ -37,7 +42,7 @@ def printUsage():
 
 if __name__ == "__main__":
 
-    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:", ["source-only","ext-only"])
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:", ["source-only", "ext-only"])
 
     p_folder = None
     p_output = None
@@ -63,10 +68,10 @@ if __name__ == "__main__":
             print("Invalid Argument : %s / %s" % (op, p))
 
     if p_folder == None or p_output == None:
-        printUsage()
+        print_usage()
         os._exit(1)
 
-    fir = FilesInfoReader(p_hash)
-    fir.setRootPath(p_folder)
-    fir.iterate(p_sourcecode_only)
-    fir.saveAsCsv(p_output)
+    FIR = FilesInfoReader(p_hash)
+    FIR.set_root_path(p_folder)
+    FIR.iterate(p_sourcecode_only)
+    FIR.save_as_csv(p_output)

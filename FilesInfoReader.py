@@ -25,11 +25,16 @@ __author__ = 'ppiazi'
 SEARCH_TARGET_EXT = FileInfo.SOURCE_CODE_EXT
 
 class FilesInfoReader:
-    def __init__(self, hash_code = "crc32"):
-        self.file_info_list = FilesInfoDB.FilesInfoDB(columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"])
-        self.FlagModifiedDate = True
-        self.FlagCheckSum = True
-        self.rootPath = None
+    """
+    root_path로 지정된 곳의 파일들을 읽어 저장하고, 원하는 포맷으로 파일을 생성하기 위한 클래스.
+    """
+    def __init__(self, hash_code="crc32"):
+        self.file_info_list = FilesInfoDB.FilesInfoDB(columns=
+                                                      ["FileName", "Folder", "MTime",
+                                                       "CheckSum", "Size", "LineCount"])
+        self.flag_modified_date = True
+        self.flag_check_sum = True
+        self.root_path = None
 
         if hash_code == "md5":
             self.hash_code = FileInfo.HASH_CODE_MD5
@@ -42,43 +47,45 @@ class FilesInfoReader:
         logging.basicConfig(level=logging.DEBUG)
         self.logger = logging.getLogger("FilesInfoReader")
 
-    def setRootPath(self, rootPath):
+    def set_root_path(self, root_path):
         """
         Set the root path to be iterated
 
-        :param rootPath:
+        :param root_path:
         :return:
         """
-        self.rootPath = rootPath
+        self.root_path = root_path
 
-    def iterate(self, ExtOnly = False):
+    def iterate(self, ext_only=False):
         """
         Start to iterate folders and gather file information.
 
-        :param ExtOnly:
+        :param ext_only:
         :return:
         """
-        for (root, dirs, files) in os.walk(self.rootPath):
-            self.logger.info("Entering %s " % (root))
+        for (root, _, files) in os.walk(self.root_path):
+            log_str = "Entering %s " % (root)
+            self.logger.info(log_str)
 
             for afile in files:
-                self.logger.info("\tReading file info : %s" % afile)
+                log_str = "\tReading file info : %s" % afile
+                self.logger.info(log_str)
                 full_file_name = os.path.join(root, afile)
 
                 file_info = FileInfo.FileInfo(full_file_name)
 
-                if ExtOnly and file_info.getFileExt().lower() not in SEARCH_TARGET_EXT:
+                if ext_only and file_info.get_file_ext().lower() not in SEARCH_TARGET_EXT:
                     continue
 
                 folder_name, file_name = os.path.split(full_file_name)
 
                 try:
-                    file_info.readInfo(self.hash_code)
+                    file_info.read_info(self.hash_code)
 
-                    check_sum = file_info.getFileCheckSum()
-                    modified_time_str = file_info.getFileMTime()
-                    file_size = file_info.getFileSize()
-                    source_code_line_count = file_info.getFileLineCount()
+                    check_sum = file_info.get_checksum()
+                    modified_time_str = file_info.get_mtime()
+                    file_size = file_info.get_size()
+                    source_code_line_count = file_info.get_line_count()
                 except:
                     check_sum = "ERROR"
                     modified_time_str = "ERROR"
@@ -86,13 +93,11 @@ class FilesInfoReader:
                     source_code_line_count = 0
 
                 # columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
-                self.file_info_list.insert(full_file_name, [file_name, folder_name, modified_time_str, check_sum, file_size, source_code_line_count])
+                self.file_info_list.insert(full_file_name,
+                                           [file_name, folder_name, modified_time_str, check_sum,
+                                            file_size, source_code_line_count])
 
-    def printAll(self):
-        for index, afile_info in self.file_info_list.iterrows():
-            self.logger.info("%s %s %s %d" % (index, afile_info["CheckSum"], afile_info["MTime"], afile_info["Size"]))
-
-    def saveAsCsv(self, file_name):
+    def save_as_csv(self, file_name):
         """
         Save data as a csv fie
 

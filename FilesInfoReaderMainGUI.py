@@ -24,14 +24,17 @@ import FilesInfoReader
 import FilesInfoReaderMain
 
 class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
+    """
+    GUI 버전 FilesInfoReader
+    """
     def __init__(self, parent=None):
         super(FilesInfoReaderMainGUI, self).__init__(parent)
         self.setupUi(self)
-        self.BtnBrowse.clicked.connect(self.showTargetFolderDlg)
-        self.BtnOutputBrowse.clicked.connect(self.showOutputFileDlg)
-        self.BtnStart.clicked.connect(self.readInfo)
+        self.BtnBrowse.clicked.connect(self.show_target_folder_dlg)
+        self.BtnOutputBrowse.clicked.connect(self.show_output_file_dlg)
+        self.BtnStart.clicked.connect(self.read_info)
         self.BtnExit.clicked.connect(QtCore.QCoreApplication.instance().quit)
-        self.ChkBoxExtOnly.stateChanged.connect(self.changeExtOnly)
+        self.ChkBoxExtOnly.stateChanged.connect(self.change_ext_only)
         self.EditSourceExtList.setText(",".join(FileInfo.SOURCE_CODE_EXT))
         self.EditExtList.setText(",".join(FilesInfoReader.SEARCH_TARGET_EXT))
         self.EditOutput.setText("output.xlsx")
@@ -39,10 +42,15 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
-        self.setWindowTitle("FilesInfoReader - %s" % (FilesInfoReaderMain.__version__))
+        self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (FilesInfoReaderMain.__version__))
         self._extonly_flag = False
 
-    def changeExtOnly(self, state):
+    def change_ext_only(self, state):
+        """
+        ExtOnly 체크 버튼 이벤트를 처리한다.
+        :param state:
+        :return:
+        """
         if state == QtCore.Qt.Checked:
             self.EditExtList.setEnabled(True)
             self._extonly_flag = True
@@ -50,15 +58,27 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
             self.EditExtList.setEnabled(False)
             self._extonly_flag = False
 
-    def showTargetFolderDlg(self):
+    def show_target_folder_dlg(self):
+        """
+        타켓 폴더 지정 버튼 이벤트 처리한다.
+        :return:
+        """
         folder = QtGui.QFileDialog.getExistingDirectory(self, "Select Folder")
         self.EditTargetFolder.setText(folder)
 
-    def showOutputFileDlg(self):
+    def show_output_file_dlg(self):
+        """
+        아웃풋 폴더 지정 버튼 이벤트를 처리한다.
+        :return:
+        """
         output_file, tmp = QtGui.QFileDialog.getSaveFileName(self, "Output File")
         self.EditOutput.setText(output_file)
 
-    def readInfo(self):
+    def read_info(self):
+        """
+        지정된 타켓 폴더의 파일 정보들을 읽는다.
+        :return:
+        """
         # check target folder validation
         target_folder = self.EditTargetFolder.text()
         if os.path.exists(target_folder) == False:
@@ -94,15 +114,25 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
             hash_method = "crc32"
 
         fir = FilesInfoReader.FilesInfoReader(hash_method)
-        fir.setRootPath(target_folder)
+        fir.set_root_path(target_folder)
         fir.iterate(ext_only)
-        fir.saveAsCsv(self.EditOutput.text())
+        fir.save_as_csv(self.EditOutput.text())
         self._info("Done")
 
     def _warning(self, msg):
+        """
+        Warning 정보 표시
+        :param msg:
+        :return:
+        """
         QtGui.QMessageBox.question(self, "Warning", msg, QtGui.QMessageBox.Yes)
 
     def _info(self, msg):
+        """
+        Info 정보 표시
+        :param msg:
+        :return:
+        """
         QtGui.QMessageBox.question(self, "Info", msg, QtGui.QMessageBox.Yes)
 
 if __name__ == "__main__":
