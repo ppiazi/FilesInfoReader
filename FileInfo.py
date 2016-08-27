@@ -30,6 +30,9 @@ HASH_CODE_MD5 = 1
 HASH_CODE_SHA1 = 2
 
 class FileInfo:
+    """
+    File 하나에 대한 정보를 저장하는 클래스
+    """
     def __init__(self, full_file):
         self.full_file = full_file
         self.file_info = {}
@@ -41,9 +44,14 @@ class FileInfo:
         self.file_info["LineCount"] = 0
         self.file_handler = None
         self.file_type = FILE_TYPE_NORMAL
-        self.checkFileType()
+        self.check_file_type()
 
-    def checkFileType(self):
+    def check_file_type(self):
+        """
+        File 확장자를 보고, 내부 타입(SOURCECODE인지 아닌지)을 결정한다.
+
+        :return:
+        """
         self.file_ext = os.path.splitext(self.full_file)[-1]
 
         if self.file_ext.lower() in SOURCE_CODE_EXT:
@@ -51,41 +59,74 @@ class FileInfo:
         else:
             self.file_type = FILE_TYPE_NORMAL
 
-    def getFileExt(self):
+    def get_file_ext(self):
+        """
+        File 확장자를 반환한다.
+
+        :return:
+        """
         return self.file_ext
 
-    def getFileType(self):
+    def get_file_type(self):
+        """
+        File 타입(SOURCECODE인지 아닌지)를 반환한다.
+
+        :return:
+        """
         return self.file_type
 
-    def readInfo(self, hash_code=HASH_CODE_CRC32):
+    def read_info(self, hash_code=HASH_CODE_CRC32):
+        """
+        File 정보를 수집하여 내부 변수에 저장한다.
+
+        :param hash_code:
+        :return:
+        """
         self.file_handler = open(self.full_file, "rb")
 
         if hash_code == HASH_CODE_MD5:
-            self.readFileMD5Hash()
+            self.read_md5()
         elif hash_code == HASH_CODE_SHA1:
-            self.readFileSHA1Hash()
+            self.read_sha1()
         else:
-            self.readFileCRC32Hash()
+            self.read_crc32()
 
-        self.readFileMTime()
-        self.readFileSize()
-        self.readLineCount()
+        self.read_mtime()
+        self.read_size()
+        self.read_line_count()
 
         self.file_handler.close()
 
-    def getFileCheckSum(self):
+    def get_checksum(self):
+        """
+        File의 체크섬을 반환한다.
+        :return:
+        """
         return self.file_info["CheckSum"]
 
-    def getFileMTime(self):
+    def get_mtime(self):
+        """
+        File의 수정일시를 반환한다.
+        :return:
+        """
         return self.file_info["FileMTime"]
 
-    def getFileSize(self):
+    def get_size(self):
+        """
+        File의 크기를 반환한다.
+        :return:
+        """
         return self.file_info["FileSize"]
 
-    def getFileLineCount(self):
+    def get_line_count(self):
+        """
+        File이 SOURCECODE 타입이면 라인 카운트를 반환한다.
+        아니면 0을 반환한다.
+        :return:
+        """
         return self.file_info["LineCount"]
 
-    def readFileCRC32Hash(self):
+    def read_crc32(self):
         """
         파일의 CRC32를 이용한 체크섬을 계산한다.
         binascii 모듈을 사용한다.
@@ -101,7 +142,7 @@ class FileInfo:
 
         self.file_info["CheckSum"] = check_sum_hex
 
-    def readFileSHA1Hash(self):
+    def read_sha1(self):
         """
         파일의 SHA-1을 이용한 체크섬을 계산한다.
         hashlib 모듈을 사용한다.
@@ -118,7 +159,7 @@ class FileInfo:
 
         self.file_info["CheckSum"] = check_sum_hex
 
-    def readFileMD5Hash(self):
+    def read_md5(self):
         """
         파일의 MD5을 이용한 체크섬을 계산한다.
         hashlib 모듈을 사용한다.
@@ -135,7 +176,7 @@ class FileInfo:
 
         self.file_info["CheckSum"] = check_sum_hex
 
-    def readFileMTime(self):
+    def read_mtime(self):
         """
         파일의 수정된 날짜 및 시간을 반환한다.
         os.path.getmtime 을 사용한다.
@@ -144,12 +185,12 @@ class FileInfo:
         :return:
         """
         mtime = os.path.getmtime(self.full_file)
-        t = time.localtime(mtime)
-        mtime_str = time.strftime("%Y-%m-%d %H:%M:%S", t)
+        local_time = time.localtime(mtime)
+        mtime_str = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
 
         self.file_info["FileMTime"] = mtime_str
 
-    def readFileSize(self):
+    def read_size(self):
         """
         파일의 크기를 반환한다.
         os.stat 를 사용한다.
@@ -161,7 +202,7 @@ class FileInfo:
 
         self.file_info["FileSize"] = statinfo.st_size
 
-    def readLineCount(self):
+    def read_line_count(self):
         """
         C/C++/C#/Java 등 소스코드의 라인수를 반환한다.
 
