@@ -104,9 +104,10 @@ class FilesInfoReader:
                     modified_time_str = file_info.get_mtime()
                     file_size = file_info.get_size()
                     source_code_line_count = file_info.get_line_count()
-                except:
-                    check_sum = "ERROR"
-                    modified_time_str = "ERROR"
+                except Exception as e:
+                    self.logger.error("\tException : " + str(e))
+                    check_sum = str(e)
+                    modified_time_str = str(e)
                     file_size = 0
                     source_code_line_count = 0
 
