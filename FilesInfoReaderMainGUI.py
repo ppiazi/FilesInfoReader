@@ -116,7 +116,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         fir = FilesInfoReader.FilesInfoReader(hash_method)
         fir.set_root_path(target_folder)
         fir.iterate(ext_only)
-        fir.save_as_csv(self.EditOutput.text())
+        fir.save(self.EditOutput.text())
         self._info("Done")
 
     def _warning(self, msg):

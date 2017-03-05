@@ -22,7 +22,7 @@ import FileInfo
 from FilesInfoReader import FilesInfoReader
 
 __author__ = 'ppiazi'
-__version__ = 'v1.1.5r3'
+__version__ = 'v1.1.6'
 
 def print_usage():
     """
@@ -33,7 +33,7 @@ def print_usage():
     print("    Version %s" % __version__)
     print("    Options:")
     print("    -f : set a target folder")
-    print("    -o : set a file for result")
+    print("    -o : set a file for result (-o stdout : means set stdout as output stream")
     print("    -h : set hash method among crc32, md5, sha1")
     print("    -s, --source-only : read source files only")
     print("    -e, --ext-only : read ext files only (currently same as --source-only option")
@@ -74,4 +74,4 @@ if __name__ == "__main__":
     FIR = FilesInfoReader(p_hash)
     FIR.set_root_path(p_folder)
     FIR.iterate(p_sourcecode_only)
-    FIR.save_as_csv(p_output)
+    FIR.save(p_output)

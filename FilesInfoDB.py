@@ -70,3 +70,26 @@ class FilesInfoDB:
             row = row + 1
 
         wbk.close()
+
+    def to_stdout(self, file_name):
+        """
+        내부 저장하고 있는 정보들을 stdout 으로 출력한다.
+
+        :param file_name:
+        :return:
+        """
+        # sort db and save into sorted_db
+        sorted_db_list = sorted(sorted(self.__db.items(), key=lambda x: x[0]))
+        sorted_db = OrderedDict(sorted_db_list)
+
+        print("File Full Name", end='\t')
+        for col in self.__cols:
+            print("%s"%(col), end='\t')
+        print("")
+
+        for (a_file, a_file_data) in sorted_db.items():
+            print("%s"%(a_file), end='\t')
+
+            for col in a_file_data[1]:
+                print("%s"%(col), end='\t')
+            print("")

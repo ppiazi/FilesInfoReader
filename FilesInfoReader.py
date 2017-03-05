@@ -97,11 +97,15 @@ class FilesInfoReader:
                                            [file_name, folder_name, modified_time_str, check_sum,
                                             file_size, source_code_line_count])
 
-    def save_as_csv(self, file_name):
+    def save(self, file_name):
         """
         Save data as a csv fie
 
         :param file_name:
         :return:
         """
-        self.file_info_list.to_csv(file_name)
+
+        if file_name == "stdout":
+            self.file_info_list.to_stdout(file_name)
+        else:
+            self.file_info_list.to_csv(file_name)
