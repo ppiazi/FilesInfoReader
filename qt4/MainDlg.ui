@@ -7,8 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>501</width>
-    <height>205</height>
+    <height>285</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>FilesInfoReader GUI</string>
@@ -19,7 +25,7 @@
      <x>10</x>
      <y>10</y>
      <width>479</width>
-     <height>193</height>
+     <height>260</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -101,6 +107,34 @@
        <widget class="QRadioButton" name="RadBtnSHA1">
         <property name="text">
          <string>SHA1</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="LayoutIgnorePat">
+      <item>
+       <widget class="QCheckBox" name="ChkBoxIgnore">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>Ignore</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Pattern</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="EditIgnorePattern">
+        <property name="enabled">
+         <bool>false</bool>
         </property>
        </widget>
       </item>

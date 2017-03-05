@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainDlg.ui'
 #
-# Created: Sat Apr 23 14:43:43 2016
+# Created: Sun Mar  5 11:28:37 2017
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,9 +12,14 @@ from PySide import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(501, 205)
+        Dialog.resize(501, 285)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        Dialog.setSizePolicy(sizePolicy)
         self.layoutWidget = QtGui.QWidget(Dialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 193))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 260))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setSpacing(8)
@@ -60,6 +65,20 @@ class Ui_Dialog(object):
         self.RadBtnSHA1.setObjectName("RadBtnSHA1")
         self.LayoutHashMethod.addWidget(self.RadBtnSHA1)
         self.verticalLayout.addLayout(self.LayoutHashMethod)
+        self.LayoutIgnorePat = QtGui.QHBoxLayout()
+        self.LayoutIgnorePat.setObjectName("LayoutIgnorePat")
+        self.ChkBoxIgnore = QtGui.QCheckBox(self.layoutWidget)
+        self.ChkBoxIgnore.setEnabled(True)
+        self.ChkBoxIgnore.setObjectName("ChkBoxIgnore")
+        self.LayoutIgnorePat.addWidget(self.ChkBoxIgnore)
+        self.label_5 = QtGui.QLabel(self.layoutWidget)
+        self.label_5.setObjectName("label_5")
+        self.LayoutIgnorePat.addWidget(self.label_5)
+        self.EditIgnorePattern = QtGui.QLineEdit(self.layoutWidget)
+        self.EditIgnorePattern.setEnabled(False)
+        self.EditIgnorePattern.setObjectName("EditIgnorePattern")
+        self.LayoutIgnorePat.addWidget(self.EditIgnorePattern)
+        self.verticalLayout.addLayout(self.LayoutIgnorePat)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.label_4 = QtGui.QLabel(self.layoutWidget)
@@ -104,6 +123,8 @@ class Ui_Dialog(object):
         self.RadBtnCrc32.setText(QtGui.QApplication.translate("Dialog", "CRC32", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnMD5.setText(QtGui.QApplication.translate("Dialog", "MD5", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnSHA1.setText(QtGui.QApplication.translate("Dialog", "SHA1", None, QtGui.QApplication.UnicodeUTF8))
+        self.ChkBoxIgnore.setText(QtGui.QApplication.translate("Dialog", "Ignore", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("Dialog", "Pattern", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Dialog", "Source Ext", None, QtGui.QApplication.UnicodeUTF8))
         self.ChkBoxExtOnly.setText(QtGui.QApplication.translate("Dialog", "Ext Only", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Dialog", "Extensions", None, QtGui.QApplication.UnicodeUTF8))

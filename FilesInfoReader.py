@@ -19,10 +19,12 @@ import logging
 import logging.handlers
 import FilesInfoDB
 import FileInfo
+import re
 
 __author__ = 'ppiazi'
 
 SEARCH_TARGET_EXT = FileInfo.SOURCE_CODE_EXT
+IGNORE_SEARCH_PATTERN = "\.git"
 
 class FilesInfoReader:
     """
@@ -46,6 +48,13 @@ class FilesInfoReader:
         # Setting up logging module
         logging.basicConfig(level=logging.DEBUG)
         self.logger = logging.getLogger("FilesInfoReader")
+        self.igr_pattern = IGNORE_SEARCH_PATTERN
+
+    def set_ignore_pattern(self, igr_pattern):
+        self.igr_pattern = igr_pattern
+
+    def get_path_ignore_pattern(self):
+        return self.igr_pattern
 
     def set_root_path(self, root_path):
         """
@@ -56,13 +65,15 @@ class FilesInfoReader:
         """
         self.root_path = root_path
 
-    def iterate(self, ext_only=False):
+    def iterate(self, ext_only=False, igr_enabled=False):
         """
         Start to iterate folders and gather file information.
 
         :param ext_only:
         :return:
         """
+        re_igr_pattern = re.compile(self.igr_pattern)
+
         for (root, _, files) in os.walk(self.root_path):
             log_str = "Entering %s " % (root)
             self.logger.info(log_str)
@@ -74,7 +85,14 @@ class FilesInfoReader:
 
                 file_info = FileInfo.FileInfo(full_file_name)
 
+                if igr_enabled == True:
+                    m = re_igr_pattern.search(full_file_name)
+                    if m != None:
+                        self.logger.info("\tPath Pattern Ignored : %s" % root)
+                        continue
+
                 if ext_only and file_info.get_file_ext().lower() not in SEARCH_TARGET_EXT:
+                    self.logger.info("\tExtension Ignored : %s" % afile)
                     continue
 
                 folder_name, file_name = os.path.split(full_file_name)

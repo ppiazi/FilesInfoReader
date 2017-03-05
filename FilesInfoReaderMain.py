@@ -29,12 +29,13 @@ def print_usage():
     사용법에 대한 내용을 콘솔에 출력한다.
     :return:
     """
-    print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>]")
+    print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>] [-g <pattern to ignore>")
     print("    Version %s" % __version__)
     print("    Options:")
     print("    -f : set a target folder")
     print("    -o : set a file for result (-o stdout : means set stdout as output stream")
     print("    -h : set hash method among crc32, md5, sha1")
+    print("    -g : set pattern to ignore")
     print("    -s, --source-only : read source files only")
     print("    -e, --ext-only : read ext files only (currently same as --source-only option")
     print("    -a : add <extension> into source file extension list")
@@ -42,10 +43,12 @@ def print_usage():
 
 if __name__ == "__main__":
 
-    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:", ["source-only", "ext-only"])
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:g:", ["source-only", "ext-only"])
 
     p_folder = None
     p_output = None
+    p_igr_enabled = False
+    p_igr_pattern = None
     p_hash = "crc32"
     p_sourcecode_only = False
 
@@ -56,6 +59,9 @@ if __name__ == "__main__":
             p_output = p
         elif op == "-h":
             p_hash = p
+        elif op == "-g":
+            p_igr_pattern = p
+            p_igr_enabled = True
         elif op in ("-s", "--source-only"):
             p_sourcecode_only = True
         elif op in ("-e", "--ext-only"):
@@ -73,5 +79,7 @@ if __name__ == "__main__":
 
     FIR = FilesInfoReader(p_hash)
     FIR.set_root_path(p_folder)
-    FIR.iterate(p_sourcecode_only)
+    if p_igr_pattern != None:
+        FIR.set_ignore_pattern(p_igr_pattern)
+    FIR.iterate(p_sourcecode_only, p_igr_enabled)
     FIR.save(p_output)

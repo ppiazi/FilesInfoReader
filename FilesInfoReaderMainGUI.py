@@ -38,12 +38,28 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.EditSourceExtList.setText(",".join(FileInfo.SOURCE_CODE_EXT))
         self.EditExtList.setText(",".join(FilesInfoReader.SEARCH_TARGET_EXT))
         self.EditOutput.setText("output.xlsx")
+        self.EditIgnorePattern.setText(FilesInfoReader.IGNORE_SEARCH_PATTERN)
+        self.ChkBoxIgnore.stateChanged.connect(self.change_ignore)
         self.RadBtnHashGroup = QtGui.QButtonGroup()
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
         self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (FilesInfoReaderMain.__version__))
         self._extonly_flag = False
+        self._igr_enabled_flag = False
+
+    def change_ignore(self, state):
+        """
+        Ignore 체크 버튼 이벤트를 처리한다.
+        :param state:
+        :return:
+        """
+        if state == QtCore.Qt.Checked:
+            self.EditIgnorePattern.setEnabled(True)
+            self._igr_enabled_flag = True
+        else:
+            self.EditIgnorePattern.setEnabled(False)
+            self._igr_enabled_flag = False
 
     def change_ext_only(self, state):
         """
@@ -95,6 +111,9 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
                 return
             FilesInfoReader.SEARCH_TARGET_EXT = ext_list
 
+        # check ignore pattern option
+        igr_enabled = self._igr_enabled_flag
+
         # check source code ext option
         try:
             src_ext_list = self.EditSourceExtList.text().split(",")
@@ -115,7 +134,9 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
 
         fir = FilesInfoReader.FilesInfoReader(hash_method)
         fir.set_root_path(target_folder)
-        fir.iterate(ext_only)
+        if igr_enabled == True:
+            fir.set_ignore_pattern(self.EditIgnorePattern.text())
+        fir.iterate(ext_only, igr_enabled)
         fir.save(self.EditOutput.text())
         self._info("Done")
 
