@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainDlg.ui'
 #
-# Created: Sun Mar  5 11:28:37 2017
+# Created: Sun Mar  5 20:02:21 2017
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(501, 285)
+        Dialog.resize(501, 243)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -22,7 +22,7 @@ class Ui_Dialog(object):
         self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 260))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget)
-        self.verticalLayout.setSpacing(8)
+        self.verticalLayout.setSpacing(10)
         self.verticalLayout.setSizeConstraint(QtGui.QLayout.SetMaximumSize)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -54,6 +54,9 @@ class Ui_Dialog(object):
         self.verticalLayout.addLayout(self.LayoutOutput)
         self.LayoutHashMethod = QtGui.QHBoxLayout()
         self.LayoutHashMethod.setObjectName("LayoutHashMethod")
+        self.label_6 = QtGui.QLabel(self.layoutWidget)
+        self.label_6.setObjectName("label_6")
+        self.LayoutHashMethod.addWidget(self.label_6)
         self.RadBtnCrc32 = QtGui.QRadioButton(self.layoutWidget)
         self.RadBtnCrc32.setChecked(True)
         self.RadBtnCrc32.setObjectName("RadBtnCrc32")
@@ -120,6 +123,7 @@ class Ui_Dialog(object):
         self.BtnBrowse.setText(QtGui.QApplication.translate("Dialog", "Browse", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Dialog", "Output", None, QtGui.QApplication.UnicodeUTF8))
         self.BtnOutputBrowse.setText(QtGui.QApplication.translate("Dialog", "Browse", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_6.setText(QtGui.QApplication.translate("Dialog", "Hash", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnCrc32.setText(QtGui.QApplication.translate("Dialog", "CRC32", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnMD5.setText(QtGui.QApplication.translate("Dialog", "MD5", None, QtGui.QApplication.UnicodeUTF8))
         self.RadBtnSHA1.setText(QtGui.QApplication.translate("Dialog", "SHA1", None, QtGui.QApplication.UnicodeUTF8))

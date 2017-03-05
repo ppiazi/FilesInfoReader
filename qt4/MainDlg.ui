@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>501</width>
-    <height>285</height>
+    <height>243</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,7 +30,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>8</number>
+     <number>10</number>
     </property>
     <property name="sizeConstraint">
      <enum>QLayout::SetMaximumSize</enum>
@@ -86,6 +86,13 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="LayoutHashMethod">
+      <item>
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Hash</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QRadioButton" name="RadBtnCrc32">
         <property name="text">
