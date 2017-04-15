@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import os
+import os.path
 import logging
 import logging.handlers
 import FilesInfoDB
@@ -126,5 +127,9 @@ class FilesInfoReader:
 
         if file_name == "stdout":
             self.file_info_list.to_stdout(file_name)
-        else:
-            self.file_info_list.to_csv(file_name)
+
+        extension = os.path.splitext(file_name)[1]
+        if extension != ".xlsx" :
+            file_name = file_name + ".xlsx"
+
+        self.file_info_list.to_csv(file_name)
