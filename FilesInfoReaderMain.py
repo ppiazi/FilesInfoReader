@@ -82,4 +82,9 @@ if __name__ == "__main__":
     if p_igr_pattern != None:
         FIR.set_ignore_pattern(p_igr_pattern)
     FIR.iterate(p_sourcecode_only, p_igr_enabled)
-    FIR.save(p_output)
+
+    try:
+        FIR.save(p_output)
+    except Exception as e:
+        print("Error to save output : " + str(e))
+

@@ -137,8 +137,13 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         if igr_enabled == True:
             fir.set_ignore_pattern(self.EditIgnorePattern.text())
         fir.iterate(ext_only, igr_enabled)
-        fir.save(self.EditOutput.text())
-        self._info("Done")
+
+        try:
+            fir.save(self.EditOutput.text())
+        except Exception as e:
+            self._warning("Error to save output : " + str(e))
+        else:
+            self._info("Done")
 
     def _warning(self, msg):
         """
