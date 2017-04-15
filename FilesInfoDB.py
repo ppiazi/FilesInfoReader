@@ -17,6 +17,8 @@ limitations under the License.
 from collections import OrderedDict
 import xlsxwriter
 
+STDOUT_SEPARATOR_CHAR='|'
+
 class FilesInfoDB:
     """
     File 정보를 임시적으로 내부 {}에 저장한다.
@@ -82,14 +84,14 @@ class FilesInfoDB:
         sorted_db_list = sorted(sorted(self.__db.items(), key=lambda x: x[0]))
         sorted_db = OrderedDict(sorted_db_list)
 
-        print("File Full Name", end='\t')
+        print("File Full Name", end=STDOUT_SEPARATOR_CHAR)
         for col in self.__cols:
-            print("%s"%(col), end='\t')
+            print("%s"%(col), end=STDOUT_SEPARATOR_CHAR)
         print("")
 
         for (a_file, a_file_data) in sorted_db.items():
-            print("%s"%(a_file), end='\t')
+            print("%s"%(a_file), end=STDOUT_SEPARATOR_CHAR)
 
             for col in a_file_data[1]:
-                print("%s"%(col), end='\t')
+                print("%s"%(col), end=STDOUT_SEPARATOR_CHAR)
             print("")
