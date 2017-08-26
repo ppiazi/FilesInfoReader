@@ -23,7 +23,7 @@ from com.tistory.ppiazi.fir.FileInfo import FileInfo
 from com.tistory.ppiazi.fir.FilesInfoReader import FilesInfoReader
 
 __author__ = 'ppiazi'
-__version__ = 'v1.1.6r1'
+__version__ = 'v1.1.7'
 
 def print_usage():
     """
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         print_usage()
         os._exit(1)
 
-    FIR = FilesInfoReader(p_hash)
+    FIR = FilesInfoReader(p_hash, False)
     FIR.set_root_path(p_folder)
     if p_igr_pattern != None:
         FIR.set_ignore_pattern(p_igr_pattern)

@@ -14,7 +14,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import subprocess
 from bs4 import BeautifulSoup
+
+CLOC_PATH = "cloc"
+CLOC_EXE_FLAGS = "%s --by-file --out temp_cloc.xml -q"
 
 class ClocXmlParser:
     def __init__(self):
@@ -38,6 +42,12 @@ class ClocXmlParser:
 
         return self.soup
 
+    def executeCloc(self, target_path, output_file=r".\temp_cloc.xml", cloc_path=r"D:\Developer\util\cloc\cloc.exe"):
+        ret = subprocess.call([cloc_path, target_path, "--by-file", "--xml", "--out", output_file, "-q"])
+        if ret != 0:
+            print("Error at calling cloc\n")
+        return ret
+
     def parseXml(self, xml_file):
         """
         cloc xml 파일을 읽어 dict 형태로 반환한다.
@@ -45,9 +55,12 @@ class ClocXmlParser:
         :return:
         """
         soup = self.openXml(xml_file)
+        file_line_info = None
+
+        if soup == None:
+            return file_line_info
 
         file_objects = soup.findAll("file")
-
         file_line_info = {}
 
         try:
