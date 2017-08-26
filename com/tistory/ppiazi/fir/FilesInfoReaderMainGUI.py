@@ -21,10 +21,12 @@ import sys
 from PySide import QtCore, QtGui
 
 import com.tistory.ppiazi.fir.qt4.MainDlg
+import configparser
 from com.tistory.ppiazi.fir import FileInfo
 from com.tistory.ppiazi.fir import FilesInfoReader
 from com.tistory.ppiazi.fir import FilesInfoReaderMain
 
+CONFIG_FILE = "config.ini"
 
 class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.Ui_Dialog):
     """
@@ -33,16 +35,23 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.U
     def __init__(self, parent=None):
         super(FilesInfoReaderMainGUI, self).__init__(parent)
         self.setupUi(self)
+
+        self._load_config()
+
         self.BtnBrowse.clicked.connect(self.show_target_folder_dlg)
         self.BtnOutputBrowse.clicked.connect(self.show_output_file_dlg)
         self.BtnClocPathBrowse.clicked.connect(self.show_cloc_path_dlg)
         self.BtnStart.clicked.connect(self.read_info)
-        self.BtnExit.clicked.connect(QtCore.QCoreApplication.instance().quit)
+        self.BtnExit.clicked.connect(self.close_app)
         self.ChkBoxExtOnly.stateChanged.connect(self.change_ext_only)
-        self.EditSourceExtList.setText(",".join(FileInfo.SOURCE_CODE_EXT))
-        self.EditExtList.setText(",".join(FilesInfoReader.SEARCH_TARGET_EXT))
-        self.EditOutput.setText("output.xlsx")
-        self.EditIgnorePattern.setText(FilesInfoReader.IGNORE_SEARCH_PATTERN)
+
+        self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(FileInfo.SOURCE_CODE_EXT)))
+        self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(FilesInfoReader.SEARCH_TARGET_EXT)))
+        self.EditOutput.setText(self._config.get("SETTING", "output_file",fallback="output.xlsx"))
+        self.EditIgnorePattern.setText(self._config.get("SETTING", "ignore_pattern", fallback=FilesInfoReader.IGNORE_SEARCH_PATTERN))
+        self.EditTargetFolder.setText(self._config.get("SETTING", "target_folder", fallback=""))
+        self.EditClocPath.setText(self._config.get("SETTING", "cloc_path", fallback=""))
+
         self.ChkBoxIgnore.stateChanged.connect(self.change_ignore)
         self.ChkBoxClocUse.stateChanged.connect(self.change_cloc_use)
         self.RadBtnHashGroup = QtGui.QButtonGroup()
@@ -50,9 +59,34 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.U
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
         self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (FilesInfoReaderMain.__version__))
+
         self._extonly_flag = False
         self._igr_enabled_flag = False
         self._cloc_use_flag = False
+
+    def close_app(self):
+        f = open(CONFIG_FILE, "w")
+        try:
+            self._config.add_section("SETTING")
+        except Exception as e:
+            print(str(e))
+        self._config.set("SETTING", "source_ext_list", self.EditSourceExtList.text())
+        self._config.set("SETTING", "search_ext_list", self.EditExtList.text())
+        self._config.set("SETTING", "output_file", self.EditOutput.text())
+        self._config.set("SETTING", "ignore_pattern", self.EditIgnorePattern.text())
+        self._config.set("SETTING", "target_folder", self.EditTargetFolder.text())
+        self._config.set("SETTING", "cloc_path", self.EditClocPath.text())
+        self._config.write(f)
+
+        print("CONFIG saved\n")
+        f.close()
+
+        QtCore.QCoreApplication.instance().quit()
+
+    def _load_config(self):
+        self._config = configparser.ConfigParser()
+        self._config.read(CONFIG_FILE)
+
 
     def change_ignore(self, state):
         """
