@@ -4,6 +4,7 @@
 # 필요한 패키지
  - XlsxWriter : http://xlsxwriter.readthedocs.io/
  - pyside : https://wiki.qt.io/PySide
+ - beautifulsoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
    아래와 같이 필요한 패키지를 설치할 수 있다.
    pip install -r requirements.txt 
@@ -24,6 +25,7 @@
 4. Source Ext : Line Count를 수행할 대상 확장자 리스트
 5. Ext Only : 특정 확장자만 검색할 경우 체크
 6. Extensions : 검색을 수행할 대상 확장자 리스트
+7. CLOC use : CLOC use checkbox to calculate more exact line count
 
 # 최신 릴리즈
  - https://github.com/ppiazi/FilesInfoReader/releases
