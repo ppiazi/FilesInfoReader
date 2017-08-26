@@ -65,6 +65,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.U
         self._cloc_use_flag = False
 
     def close_app(self):
+        # before close, try to save current status into config.ini
         f = open(CONFIG_FILE, "w")
         try:
             self._config.add_section("SETTING")
