@@ -14,8 +14,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-from com.tistory.ppiazi.fir.ClocXmlParser import ClocXmlParser
 import unittest
+
+from ClocXmlParser import ClocXmlParser
 
 TEST_TARGET_NOFILE = "nofile.xml"
 TEST_TARGET1 = "test1.xml"

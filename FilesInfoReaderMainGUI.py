@@ -15,20 +15,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import configparser
 import os
 import sys
 
 from PySide import QtCore, QtGui
 
-import com.tistory.ppiazi.fir.qt4.MainDlg
-import configparser
-from com.tistory.ppiazi.fir import FileInfo
-from com.tistory.ppiazi.fir import FilesInfoReader
-from com.tistory.ppiazi.fir import FilesInfoReaderMain
+import FileInfo
+import FilesInfoReaderMain
+import FilesInfoReader
+import qt4.MainDlg
 
 CONFIG_FILE = "config.ini"
 
-class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.Ui_Dialog):
+class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
     """
     GUI 버전 FilesInfoReader
     """
@@ -45,8 +45,10 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.U
         self.BtnExit.clicked.connect(self.close_app)
         self.ChkBoxExtOnly.stateChanged.connect(self.change_ext_only)
 
-        self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(FileInfo.SOURCE_CODE_EXT)))
-        self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(FilesInfoReader.SEARCH_TARGET_EXT)))
+        self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(
+            FileInfo.SOURCE_CODE_EXT)))
+        self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(
+            FilesInfoReader.SEARCH_TARGET_EXT)))
         self.EditOutput.setText(self._config.get("SETTING", "output_file",fallback="output.xlsx"))
         self.EditIgnorePattern.setText(self._config.get("SETTING", "ignore_pattern", fallback=FilesInfoReader.IGNORE_SEARCH_PATTERN))
         self.EditTargetFolder.setText(self._config.get("SETTING", "target_folder", fallback=""))

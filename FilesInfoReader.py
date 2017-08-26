@@ -20,10 +20,9 @@ import os
 import os.path
 import re
 
-from com.tistory.ppiazi.fir.FilesInfoDB import FilesInfoDB
-from com.tistory.ppiazi.fir.ClocXmlParser import ClocXmlParser
-
-from com.tistory.ppiazi.fir import FileInfo
+from FilesInfoDB import FilesInfoDB
+import FileInfo
+from ClocXmlParser import ClocXmlParser
 
 __author__ = 'ppiazi'
 

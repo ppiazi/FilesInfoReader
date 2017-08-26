@@ -18,9 +18,8 @@ import getopt
 import os
 import sys
 
-from com.tistory.ppiazi.fir.FileInfo import FileInfo
-
-from com.tistory.ppiazi.fir.FilesInfoReader import FilesInfoReader
+from FileInfo import FileInfo
+from FilesInfoReader import FilesInfoReader
 
 __author__ = 'ppiazi'
 __version__ = 'v1.1.7'
