@@ -1,0 +1,88 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>github.com/AlDanial/cloc</cloc_url>
+  <cloc_version>1.72</cloc_version>
+  <elapsed_seconds>2</elapsed_seconds>
+  <n_files>73</n_files>
+  <n_lines>9700</n_lines>
+  <files_per_second>36.5</files_per_second>
+  <lines_per_second>4850</lines_per_second>
+  <report_file>result2.xml</report_file>
+</header>
+<files>
+  <file name=".\FIR\.idea\workspace.xml" blank="0" comment="0" code="1036"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\.idea\workspace.xml" blank="0" comment="0" code="923"  language="XML" />
+  <file name=".\catex\.idea\workspace.xml" blank="0" comment="0" code="603"  language="XML" />
+  <file name=".\git_meta_store\.idea\workspace.xml" blank="0" comment="0" code="550"  language="XML" />
+  <file name=".\LegalNoticeMaker\.idea\workspace.xml" blank="0" comment="0" code="544"  language="XML" />
+  <file name=".\OSS_bdstool_helper\.idea\workspace.xml" blank="0" comment="0" code="397"  language="XML" />
+  <file name=".\Codesonar_Log_Parser\.idea\workspace.xml" blank="0" comment="0" code="359"  language="XML" />
+  <file name=".\MobileKeypadAnalyzer\.idea\workspace.xml" blank="0" comment="0" code="322"  language="XML" />
+  <file name=".\SE_HW_01\.idea\workspace.xml" blank="0" comment="0" code="318"  language="XML" />
+  <file name=".\QACPP_Log_Parser\.idea\workspace.xml" blank="0" comment="0" code="291"  language="XML" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\test\test1.xml" blank="0" comment="0" code="251"  language="XML" />
+  <file name=".\pandas1\.idea\workspace.xml" blank="0" comment="0" code="249"  language="XML" />
+  <file name=".\FIR\qt4\MainDlg.ui" blank="0" comment="0" code="212"  language="Qt" />
+  <file name=".\git_meta_store\dev\git_meta_store.py" blank="53" comment="12" code="159"  language="Python" />
+  <file name=".\QACPP_Log_Parser\QACPP_Log_Parser.py" blank="42" comment="15" code="150"  language="Python" />
+  <file name=".\korea_univ_gscit_notice_bot\BotMain.py" blank="61" comment="67" code="138"  language="Python" />
+  <file name=".\FIR\qt4\MainDlg.py" blank="8" comment="7" code="132"  language="Python" />
+  <file name=".\catex\src\catex_main.py" blank="36" comment="19" code="112"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\FilesInfoReaderMainGUI.py" blank="21" comment="53" code="97"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\FileInfo.py" blank="43" comment="89" code="89"  language="Python" />
+  <file name=".\result2.xml" blank="0" comment="0" code="88"  language="XML" />
+  <file name=".\LegalNoticeMaker\src\LegalNoniceMaker.py" blank="27" comment="16" code="88"  language="Python" />
+  <file name=".\HangulTest\.idea\workspace.xml" blank="0" comment="0" code="87"  language="XML" />
+  <file name=".\Codesonar_Log_Parser\Codesonar_Log_Parser.py" blank="35" comment="13" code="86"  language="Python" />
+  <file name=".\새 폴더\FileInfo.py" blank="38" comment="52" code="86"  language="Python" />
+  <file name=".\catex\src\catex.py" blank="22" comment="21" code="80"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\FilesInfoReader.py" blank="30" comment="33" code="74"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\FilesInfoReaderMain.py" blank="15" comment="17" code="59"  language="Python" />
+  <file name=".\MobileKeypadAnalyzer\MobileKeypadAnalyzer.py" blank="17" comment="1" code="58"  language="Python" />
+  <file name=".\OSS_bdstool_helper\OSS_bdstool_helper.py" blank="20" comment="19" code="53"  language="Python" />
+  <file name=".\SE_HW_01\.idea\misc.xml" blank="0" comment="0" code="52"  language="XML" />
+  <file name=".\새 폴더\FilesInfoReader.py" blank="20" comment="29" code="49"  language="Python" />
+  <file name=".\pandas1\.idea\misc.xml" blank="0" comment="0" code="48"  language="XML" />
+  <file name=".\MobileKeypadAnalyzer\HangulParser.py" blank="20" comment="10" code="46"  language="Python" />
+  <file name=".\OSS_bdstool_helper\.idea\misc.xml" blank="0" comment="0" code="45"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\.idea\misc.xml" blank="0" comment="0" code="45"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\BotMainDb.py" blank="19" comment="21" code="42"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\FilesInfoDB.py" blank="20" comment="37" code="40"  language="Python" />
+  <file name=".\새 폴더\FilesInfoReaderMain.py" blank="11" comment="13" code="38"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\test\ClocXmlParserTest.py" blank="12" comment="13" code="31"  language="Python" />
+  <file name=".\새 폴더\FilesInfoDB.py" blank="9" comment="2" code="27"  language="Python" />
+  <file name=".\korea_univ_gscit_notice_bot\NoticeReader.py" blank="13" comment="15" code="26"  language="Python" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\ClocXmlParser.py" blank="14" comment="13" code="25"  language="Python" />
+  <file name=".\FIR\README.md" blank="6" comment="0" code="23"  language="Markdown" />
+  <file name=".\SE_HW_01\SE_HW_01.py" blank="6" comment="9" code="19"  language="Python" />
+  <file name=".\새 폴더 (2)\result2.xml" blank="0" comment="0" code="17"  language="XML" />
+  <file name=".\FIR\com\tistory\ppiazi\fir\test\test2.xml" blank="0" comment="0" code="16"  language="XML" />
+  <file name=".\MobileKeypadAnalyzer\.idea\misc.xml" blank="0" comment="0" code="14"  language="XML" />
+  <file name=".\새 폴더\호호\한글2.c" blank="2" comment="6" code="11"  language="C" />
+  <file name=".\SE_HW_01\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\HangulTest\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\MobileKeypadAnalyzer\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\catex\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\QACPP_Log_Parser\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\pandas1\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\Codesonar_Log_Parser\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\OSS_bdstool_helper\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\LegalNoticeMaker\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\FIR\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\git_meta_store\.idea\modules.xml" blank="0" comment="0" code="8"  language="XML" />
+  <file name=".\git_meta_store\dev\post-checkout" blank="2" comment="2" code="7"  language="Bourne Shell" />
+  <file name=".\LegalNoticeMaker\.idea\vcs.xml" blank="0" comment="0" code="7"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\.idea\vcs.xml" blank="0" comment="0" code="6"  language="XML" />
+  <file name=".\pandas1\.idea\vcs.xml" blank="0" comment="0" code="6"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\.idea\encodings.xml" blank="0" comment="0" code="6"  language="XML" />
+  <file name=".\OSS_bdstool_helper\.idea\vcs.xml" blank="0" comment="0" code="6"  language="XML" />
+  <file name=".\korea_univ_gscit_notice_bot\README.md" blank="5" comment="0" code="5"  language="Markdown" />
+  <file name=".\git_meta_store\.idea\misc.xml" blank="0" comment="0" code="4"  language="XML" />
+  <file name=".\git_meta_store\README.md" blank="1" comment="0" code="4"  language="Markdown" />
+  <file name=".\git_meta_store\dev\pre-commit" blank="2" comment="3" code="4"  language="Bourne Shell" />
+  <file name=".\korea_univ_gscit_notice_bot\.idea\dictionaries\ppiazi.xml" blank="0" comment="0" code="3"  language="XML" />
+  <file name=".\새 폴더\setup.py" blank="1" comment="0" code="3"  language="Python" />
+  <total blank="631" comment="607" code="8462" />
+</files>
+</results>

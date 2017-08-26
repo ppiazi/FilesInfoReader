@@ -1,0 +1,251 @@
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>github.com/AlDanial/cloc</cloc_url>
+  <cloc_version>1.72</cloc_version>
+  <elapsed_seconds>1</elapsed_seconds>
+  <n_files>236</n_files>
+  <n_lines>37876</n_lines>
+  <files_per_second>236</files_per_second>
+  <lines_per_second>37876</lines_per_second>
+  <report_file>result.xml</report_file>
+</header>
+<files>
+  <file name="cloc-1.72\cloc" blank="765" comment="1205" code="9706"  language="Perl" />
+  <file name="cloc-1.72\Unix\cloc" blank="530" comment="1033" code="8424"  language="Perl" />
+  <file name="cloc-1.72\README.md" blank="216" comment="26" code="2131"  language="Markdown" />
+  <file name="cloc-1.72\tests\inputs\locale_facets.h" blank="191" comment="780" code="617"  language="C/C++ Header" />
+  <file name="cloc-1.72\Unix\t\00_C.t" blank="4" comment="2" code="547"  language="Perl" />
+  <file name="cloc-1.72\tests\inputs\utilities.R" blank="41" comment="276" code="524"  language="R" />
+  <file name="cloc-1.72\tests\inputs\logtalk.lgt" blank="59" comment="57" code="368"  language="Logtalk" />
+  <file name="cloc-1.72\tests\inputs\dd\bb\cc\MoreTeapotsRenderer.cpp" blank="76" comment="114" code="365"  language="C++" />
+  <file name="cloc-1.72\tests\inputs\warship.ts" blank="39" comment="11" code="343"  language="TypeScript" />
+  <file name="cloc-1.72\tests\inputs\aa\bb\cc\plasma.c" blank="79" comment="34" code="286"  language="C" />
+  <file name="cloc-1.72\tests\inputs\ZosMsg.mc" blank="73" comment="3" code="284"  language="Windows Message File" />
+  <file name="cloc-1.72\tests\inputs\ExprParser.g" blank="48" comment="19" code="257"  language="Antlr" />
+  <file name="cloc-1.72\tests\inputs\md5.rkt" blank="32" comment="159" code="247"  language="Racket" />
+  <file name="cloc-1.72\tests\inputs\glade-search-popover.ui" blank="0" comment="22" code="232"  language="Glade" />
+  <file name="cloc-1.72\tests\inputs\ZosNet.rc" blank="42" comment="45" code="218"  language="Windows Resource File" />
+  <file name="cloc-1.72\tests\inputs\Assembly-sysv.S" blank="38" comment="108" code="188"  language="Assembly" />
+  <file name="cloc-1.72\tests\inputs\dd\bb\ee\TeapotRenderer.cpp" blank="49" comment="55" code="182"  language="C++" />
+  <file name="cloc-1.72\tests\inputs\acpclust.R" blank="54" comment="35" code="170"  language="R" />
+  <file name="cloc-1.72\Unix\t\01_opts.t" blank="4" comment="2" code="165"  language="Perl" />
+  <file name="cloc-1.72\tests\inputs\LaTeX.tex" blank="29" comment="21" code="155"  language="TeX" />
+  <file name="cloc-1.72\tests\inputs\comp.ecpp" blank="26" comment="34" code="116"  language="ECPP" />
+  <file name="cloc-1.72\tests\inputs\messages.rb" blank="11" comment="30" code="111"  language="Ruby" />
+  <file name="cloc-1.72\tests\inputs\ItemView.vue" blank="10" comment="2" code="85"  language="Vuejs Component" />
+  <file name="cloc-1.72\Unix\Makefile" blank="27" comment="36" code="78"  language="make" />
+  <file name="cloc-1.72\tests\inputs\mfile.mk" blank="27" comment="36" code="77"  language="make" />
+  <file name="cloc-1.72\tests\inputs\drupal.mxml" blank="23" comment="5" code="74"  language="MXML" />
+  <file name="cloc-1.72\tests\inputs\just_stuff.haml" blank="5" comment="16" code="66"  language="Haml" />
+  <file name="cloc-1.72\tests\inputs\tour.swift" blank="23" comment="13" code="65"  language="Swift" />
+  <file name="cloc-1.72\tests\inputs\Sample.mc" blank="16" comment="6" code="64"  language="Windows Message File" />
+  <file name="cloc-1.72\tests\inputs\Makefile" blank="22" comment="49" code="62"  language="make" />
+  <file name="cloc-1.72\tests\inputs\verilog.sv" blank="4" comment="20" code="62"  language="Verilog-SystemVerilog" />
+  <file name="cloc-1.72\tests\inputs\TypeScript.ts" blank="11" comment="23" code="60"  language="TypeScript" />
+  <file name="cloc-1.72\tests\inputs\iclean.icl" blank="10" comment="30" code="58"  language="Clean" />
+  <file name="cloc-1.72\tests\inputs\i18n_de.ts" blank="0" comment="4" code="57"  language="Qt Linguist" />
+  <file name="cloc-1.72\tests\inputs\Dockerfile" blank="4" comment="1" code="53"  language="Dockerfile" />
+  <file name="cloc-1.72\tests\inputs\Lanczos.m" blank="0" comment="0" code="48"  language="MATLAB" />
+  <file name="cloc-1.72\tests\inputs\dd\bb\config.c" blank="22" comment="22" code="44"  language="C" />
+  <file name="cloc-1.72\tests\inputs\style.scss" blank="14" comment="0" code="43"  language="Sass" />
+  <file name="cloc-1.72\tests\inputs\statcsv.nim" blank="5" comment="13" code="43"  language="Nim" />
+  <file name="cloc-1.72\sqlite_formatter" blank="5" comment="15" code="42"  language="Perl" />
+  <file name="cloc-1.72\tests\inputs\robotframework.tsv" blank="9" comment="5" code="35"  language="RobotFramework" />
+  <file name="cloc-1.72\tests\inputs\en_AU.po" blank="9" comment="18" code="33"  language="PO File" />
+  <file name="cloc-1.72\tests\inputs\blur.glsl" blank="10" comment="14" code="32"  language="GLSL" />
+  <file name="cloc-1.72\tests\outputs\issues\132\T1.yaml" blank="0" comment="1" code="30"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T1.yaml" blank="0" comment="1" code="30"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T4.yaml" blank="0" comment="1" code="30"  language="YAML" />
+  <file name="cloc-1.72\tests\inputs\modules1-ntp1.pp" blank="2" comment="2" code="27"  language="Puppet" />
+  <file name="cloc-1.72\tests\inputs\FreemarkerTemplate.ftl" blank="0" comment="2" code="27"  language="Freemarker Template" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T3.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\tests\inputs\conditions.CBL" blank="3" comment="3" code="25"  language="COBOL" />
+  <file name="cloc-1.72\tests\inputs\ping_pong.lfe" blank="15" comment="21" code="25"  language="LFE" />
+  <file name="cloc-1.72\tests\outputs\exclude_dir_1.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\131\T1.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T2.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\tests\inputs\qsort_demo.m" blank="11" comment="11" code="25"  language="Objective C" />
+  <file name="cloc-1.72\tests\outputs\dd.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\Unix\pod2man.mk" blank="9" comment="36" code="25"  language="make" />
+  <file name="cloc-1.72\tests\outputs\issues\132\T2.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T7.yaml" blank="0" comment="1" code="25"  language="YAML" />
+  <file name="cloc-1.72\tests\inputs\sharpsign.cl" blank="5" comment="26" code="24"  language="Lisp" />
+  <file name="cloc-1.72\tests\inputs\hello.bf" blank="1" comment="3" code="24"  language="Brainfuck" />
+  <file name="cloc-1.72\tests\inputs\Sys.hx" blank="26" comment="99" code="24"  language="Haxe" />
+  <file name="cloc-1.72\tests\inputs\C++-MFC.cc" blank="5" comment="3" code="22"  language="C++" />
+  <file name="cloc-1.72\tests\inputs\glossary.json" blank="0" comment="0" code="22"  language="JSON" />
+  <file name="cloc-1.72\tests\outputs\hello.lua.yaml" blank="1" comment="1" code="22"  language="YAML" />
+  <file name="cloc-1.72\tests\inputs\master.blade.php" blank="10" comment="5" code="22"  language="Blade" />
+  <file name="cloc-1.72\tests\inputs\test2.lhs" blank="12" comment="11" code="21"  language="Haskell" />
+  <file name="cloc-1.72\tests\outputs\FreemarkerTemplate.ftl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Fortran90.f90.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Cobol.cbl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Mumps.mps.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello.f90.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\drupal.mxml.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Haskell.hs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Assembly-sysv.S.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ping_pong.lfe.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ItemView.vue.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Lanczos.m.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\utilities.R.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\mfile.mk.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Mathematica_1.m.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T6.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ZosMsg.mc.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\wokka.cs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\modules1-ntp1.pp.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\locale_facets.h.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\messages.rb.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ZosNp.def.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ZosNet.rc.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello.bf.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\statcsv.nim.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\132\T6.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\C#.cs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ExprParser.g.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\IDL.idl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\verilog.sv.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\iclean.icl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Mako.mako.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\sharpsign.cl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\en_AU.po.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello.pl1.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\131\T2.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\pop_by_country.xq.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\LaTeX.tex.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\aa.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\julia.jl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\i18n_de.ts.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\acpclust.R.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\clusterConf.ttcn.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\test1.php.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\x.mustache.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\md5.rkt.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Fortran77.f.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\test2.lhs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Assembler-Intel.asm.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\MSDOS.bat.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\conditions.CBL.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\specman_e.e.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\132\T3.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\fsharp.fs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Pascal.pp.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\FOCUS.focexec.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\wpedia.ini.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Sys.hx.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\114\T5.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello.kt.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\qsort_demo.m.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\logtalk.lgt.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\greeter.tsx.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\ColdFusion.cfm.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\includes_demo.mustache.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello.pas.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Makefile.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\foo_bar.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello1.pas.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\XSLT.xslt.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Dockerfile.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\hello.f.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\robotframework.tsv.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\master.blade.php.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\harbour_xbase.prg.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\147\T1.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\C-Ansi.c.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\glade-search-popover.ui.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\script1-hadoop.pig.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\VisualBasic.Net.vba.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\TypeScript.ts.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\temp.c.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Slim.html.slim.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\132\T5.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\style.scss.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Java.java.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Sample.mc.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\tour.swift.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\test1.inc.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Mathematica_2.wlt.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\XSL-FO.xsl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\comp.ecpp.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\test1.lhs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\C++-MFC.cc.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\sample.R.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\just_stuff.haml.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\issues\132\T4.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\blur.glsl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Octave.m.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\warship.ts.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\wokka.cbl.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\test.hs.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\regex_limit.gradle.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\00_C.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\XML.xml.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Tk.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\glossary.json.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\Pascal.pas.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\outputs\razor.cshtml.yaml" blank="0" comment="1" code="20"  language="YAML" />
+  <file name="cloc-1.72\tests\inputs\clusterConf.ttcn" blank="11" comment="16" code="19"  language="TTCN" />
+  <file name="cloc-1.72\tests\inputs\ZosNp.def" blank="1" comment="1" code="18"  language="Windows Module Definition" />
+  <file name="cloc-1.72\tests\inputs\regex_limit.gradle" blank="0" comment="2" code="17"  language="Groovy" />
+  <file name="cloc-1.72\tests\inputs\includes_demo.mustache" blank="1" comment="3" code="16"  language="Mustache" />
+  <file name="cloc-1.72\tests\inputs\script1-hadoop.pig" blank="19" comment="40" code="15"  language="Pig Latin" />
+  <file name="cloc-1.72\tests\inputs\x.mustache" blank="4" comment="4" code="15"  language="Mustache" />
+  <file name="cloc-1.72\tests\inputs\test1.php" blank="6" comment="6" code="15"  language="PHP" />
+  <file name="cloc-1.72\tests\inputs\fsharp.fs" blank="3" comment="6" code="14"  language="F#" />
+  <file name="cloc-1.72\tests\inputs\XSL-FO.xsl" blank="0" comment="2" code="13"  language="XSLT" />
+  <file name="cloc-1.72\tests\inputs\specman_e.e" blank="1" comment="14" code="13"  language="Specman e" />
+  <file name="cloc-1.72\tests\inputs\Mathematica_2.wlt" blank="12" comment="9" code="11"  language="Mathematica" />
+  <file name="cloc-1.72\tests\inputs\Mathematica_1.m" blank="12" comment="8" code="11"  language="Mathematica" />
+  <file name="cloc-1.72\tests\inputs\test1.inc" blank="5" comment="7" code="11"  language="PHP" />
+  <file name="cloc-1.72\tests\inputs\Slim.html.slim" blank="0" comment="3" code="10"  language="Slim" />
+  <file name="cloc-1.72\tests\inputs\test.hs" blank="5" comment="5" code="9"  language="Haskell" />
+  <file name="cloc-1.72\tests\inputs\Mako.mako" blank="3" comment="8" code="9"  language="Mako" />
+  <file name="cloc-1.72\tests\inputs\Assembler-Intel.asm" blank="2" comment="2" code="9"  language="Assembly" />
+  <file name="cloc-1.72\tests\inputs\Java.java" blank="6" comment="15" code="9"  language="Java" />
+  <file name="cloc-1.72\tests\inputs\C#.cs" blank="2" comment="2" code="9"  language="C#" />
+  <file name="cloc-1.72\tests\inputs\hello.kt" blank="0" comment="3" code="9"  language="Kotlin" />
+  <file name="cloc-1.72\tests\inputs\Cobol.cbl" blank="1" comment="4" code="8"  language="COBOL" />
+  <file name="cloc-1.72\tests\inputs\issues\132\C-Ansi.c" blank="2" comment="2" code="7"  language="C" />
+  <file name="cloc-1.72\tests\inputs\greeter.tsx" blank="2" comment="5" code="7"  language="TypeScript" />
+  <file name="cloc-1.72\tests\inputs\wpedia.ini" blank="2" comment="3" code="7"  language="INI" />
+  <file name="cloc-1.72\tests\inputs\VisualBasic.Net.vba" blank="4" comment="2" code="6"  language="Visual Basic" />
+  <file name="cloc-1.72\tests\inputs\XSLT.xslt" blank="0" comment="2" code="6"  language="XSLT" />
+  <file name="cloc-1.72\tests\inputs\hello1.pas" blank="1" comment="5" code="6"  language="Pascal" />
+  <file name="cloc-1.72\tests\inputs\wokka.cs" blank="2" comment="1" code="5"  language="C#" />
+  <file name="cloc-1.72\tests\inputs\hello.pl1" blank="0" comment="7" code="5"  language="PL/I" />
+  <file name="cloc-1.72\tests\inputs\sample.R" blank="0" comment="1" code="4"  language="R" />
+  <file name="cloc-1.72\tests\inputs\julia.jl" blank="3" comment="11" code="4"  language="Julia" />
+  <file name="cloc-1.72\tests\inputs\hello.f90" blank="0" comment="3" code="4"  language="Fortran 90" />
+  <file name="cloc-1.72\tests\inputs\Pascal.pas" blank="1" comment="2" code="4"  language="Pascal" />
+  <file name="cloc-1.72\tests\inputs\hello.f" blank="0" comment="6" code="4"  language="Fortran 77" />
+  <file name="cloc-1.72\tests\inputs\hello.pas" blank="1" comment="4" code="4"  language="Pascal" />
+  <file name="cloc-1.72\tests\inputs\razor.cshtml" blank="0" comment="4" code="4"  language="Razor" />
+  <file name="cloc-1.72\tests\inputs\Pascal.pp" blank="1" comment="4" code="4"  language="Pascal" />
+  <file name="cloc-1.72\tests\inputs\Haskell.hs" blank="1" comment="2" code="3"  language="Haskell" />
+  <file name="cloc-1.72\tests\inputs\issues\132\ignore_dir\Fortran77.f" blank="1" comment="2" code="3"  language="Fortran 77" />
+  <file name="cloc-1.72\tests\inputs\Tk" blank="1" comment="2" code="3"  language="Tcl/Tk" />
+  <file name="cloc-1.72\tests\inputs\Fortran90.f90" blank="1" comment="2" code="3"  language="Fortran 90" />
+  <file name="cloc-1.72\tests\inputs\XML.xml" blank="0" comment="2" code="3"  language="XML" />
+  <file name="cloc-1.72\tests\inputs\temp.c" blank="2" comment="0" code="3"  language="C" />
+  <file name="cloc-1.72\tests\inputs\Octave.m" blank="0" comment="1" code="2"  language="MATLAB" />
+  <file name="cloc-1.72\tests\inputs\issues\131\cloc_submodule_test\README.md" blank="0" comment="0" code="2"  language="Markdown" />
+  <file name="cloc-1.72\tests\inputs\test1.lhs" blank="5" comment="8" code="2"  language="Haskell" />
+  <file name="cloc-1.72\tests\inputs\hello.lua" blank="3" comment="9" code="2"  language="Lua" />
+  <file name="cloc-1.72\tests\inputs\MSDOS.bat" blank="1" comment="2" code="2"  language="DOS Batch" />
+  <file name="cloc-1.72\tests\inputs\ColdFusion.cfm" blank="1" comment="2" code="2"  language="ColdFusion" />
+  <file name="cloc-1.72\tests\inputs\issues\132\ignore_git\hi.py" blank="3" comment="7" code="2"  language="Python" />
+  <file name="cloc-1.72\tests\inputs\wokka.cbl" blank="1" comment="1" code="2"  language="COBOL" />
+  <file name="cloc-1.72\tests\inputs\IDL.idl" blank="0" comment="2" code="1"  language="IDL" />
+  <file name="cloc-1.72\tests\inputs\issues\114\bar\bee\inner_most.js" blank="0" comment="0" code="1"  language="JavaScript" />
+  <file name="cloc-1.72\tests\inputs\issues\114\bar\under_Bar.js" blank="0" comment="0" code="1"  language="JavaScript" />
+  <file name="cloc-1.72\tests\inputs\FOCUS.focexec" blank="1" comment="2" code="1"  language="Focus" />
+  <file name="cloc-1.72\tests\inputs\pop_by_country.xq" blank="0" comment="1" code="1"  language="XQuery" />
+  <file name="cloc-1.72\tests\inputs\harbour_xbase.prg" blank="0" comment="9" code="1"  language="xBase" />
+  <file name="cloc-1.72\tests\inputs\issues\114\foo\under_foo.js" blank="0" comment="0" code="1"  language="JavaScript" />
+  <file name="cloc-1.72\tests\inputs\Mumps.mps" blank="0" comment="2" code="1"  language="MUMPS" />
+  <file name="cloc-1.72\tests\inputs\foo_bar\bar\foo\momo\tbfm.sh" blank="0" comment="0" code="1"  language="Bourne Shell" />
+  <file name="cloc-1.72\tests\inputs\foo_bar\foo\bar\lala\tfbl.sh" blank="0" comment="0" code="1"  language="Bourne Shell" />
+  <total blank="2896" comment="5018" code="29962" />
+</files>
+</results>
