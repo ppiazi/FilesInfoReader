@@ -37,9 +37,9 @@ class FilesInfoReader:
     """
     root_path로 지정된 곳의 파일들을 읽어 저장하고, 원하는 포맷으로 파일을 생성하기 위한 클래스.
     """
-    def __init__(self, hash_code="crc32", loc_normal_type=True):
-        self.loc_normal_type = loc_normal_type
-        if self.loc_normal_type == True:
+    def __init__(self, hash_code="crc32", cloc_use=False):
+        self.cloc_use = cloc_use
+        if self.cloc_use == False:
             selected_columns = FIELDS_COMULMNS_NORMAL
         else:
             selected_columns = FIELDS_COMULMNS_CLOC
@@ -76,18 +76,23 @@ class FilesInfoReader:
         """
         self.root_path = root_path
 
-    def start_cloc(self):
+    def start_cloc(self, cloc_path):
         """
         cloc target folder
 
         :return:
         """
-        cloc_parser = ClocXmlParser()
+        self.logger.info("Starting CLOC")
+
+        cloc_parser = ClocXmlParser(cloc_path)
         ret = cloc_parser.executeCloc(self.root_path)
-        self.line_info = cloc_parser.parseXml(r".\temp_cloc.xml")
+        line_info = cloc_parser.parseXml(r".\temp_cloc.xml")
 
+        self.logger.info("Done")
 
-    def iterate(self, ext_only=False, igr_enabled=False):
+        return line_info
+
+    def iterate(self, ext_only=False, igr_enabled=False, line_info={}):
         """
         Start to iterate folders and gather file information.
 
@@ -95,11 +100,6 @@ class FilesInfoReader:
         :return:
         """
         re_igr_pattern = re.compile(self.igr_pattern)
-
-        if self.loc_normal_type == False:
-            self.logger.info("Starting CLOC")
-            self.start_cloc()
-            self.logger.info("Done")
 
         for (root, _, files) in os.walk(self.root_path):
             log_str = "Entering %s " % (root)
@@ -130,16 +130,17 @@ class FilesInfoReader:
                     check_sum = file_info.get_checksum()
                     modified_time_str = file_info.get_mtime()
                     file_size = file_info.get_size()
-                    if file_info.get_line_count() == 0 or self.loc_normal_type == True:
+                    if file_info.get_line_count() == 0 or self.cloc_use == False:
                         source_code_line_count = file_info.get_line_count()
                         source_code_comment_count = 0
                         source_code_blank_count = 0
                     else:
                         try:
-                            source_code_line_count = self.line_info[full_file_name]["code"]
-                            source_code_comment_count = self.line_info[full_file_name]["comment"]
-                            source_code_blank_count = self.line_info[full_file_name]["blank"]
+                            source_code_line_count = line_info[full_file_name]["code"]
+                            source_code_comment_count = line_info[full_file_name]["comment"]
+                            source_code_blank_count = line_info[full_file_name]["blank"]
                         except Exception as e:
+                            # if there is no line info in cloc output file
                             self.logger.warning("\tNot Found in cloc : " + str(e))
                             source_code_line_count = file_info.get_line_count()
                             source_code_comment_count = 0
@@ -154,7 +155,7 @@ class FilesInfoReader:
                     source_code_blank_count = 0
 
                 # columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
-                if self.loc_normal_type == True:
+                if self.cloc_use == False:
                     self.file_info_list.insert(full_file_name,
                                                [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count])

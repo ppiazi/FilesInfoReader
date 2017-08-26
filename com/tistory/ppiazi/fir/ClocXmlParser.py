@@ -17,12 +17,9 @@ limitations under the License.
 import subprocess
 from bs4 import BeautifulSoup
 
-CLOC_PATH = "cloc"
-CLOC_EXE_FLAGS = "%s --by-file --out temp_cloc.xml -q"
-
 class ClocXmlParser:
-    def __init__(self):
-        pass
+    def __init__(self, cloc_path):
+        self.cloc_path = cloc_path
 
     def openXml(self, xml_file):
         """
@@ -42,8 +39,8 @@ class ClocXmlParser:
 
         return self.soup
 
-    def executeCloc(self, target_path, output_file=r".\temp_cloc.xml", cloc_path=r"D:\Developer\util\cloc\cloc.exe"):
-        ret = subprocess.call([cloc_path, target_path, "--by-file", "--xml", "--out", output_file, "-q"])
+    def executeCloc(self, target_path, output_file=r".\temp_cloc.xml"):
+        ret = subprocess.call([self.cloc_path, target_path, "--by-file", "--xml", "--out", output_file, "-q"])
         if ret != 0:
             print("Error at calling cloc\n")
         return ret

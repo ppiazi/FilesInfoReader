@@ -33,18 +33,20 @@ def print_usage():
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>] [-g <pattern to ignore>")
     print("    Version %s" % __version__)
     print("    Options:")
-    print("    -f : set a target folder")
-    print("    -o : set a file for result (-o stdout : means set stdout as output stream")
+    print("    -f : (mandatory) set a target folder")
+    print("    -o : (mandatory) set a file for result (-o stdout : means set stdout as output stream")
     print("    -h : set hash method among crc32, md5, sha1")
     print("    -g : set pattern to ignore")
     print("    -s, --source-only : read source files only")
     print("    -e, --ext-only : read ext files only (currently same as --source-only option")
     print("    -a : add <extension> into source file extension list")
     print("        Example) -a asm -a pl")
+    print("    -c : set cloc path to get more exact line count")
+    print("        Example) -c \"D:\\Developer\\util\\cloc\\cloc.exe\"")
 
 if __name__ == "__main__":
 
-    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:g:", ["source-only", "ext-only"])
+    optlist, args = getopt.getopt(sys.argv[1:], "f:o:h:sea:g:c:", ["source-only", "ext-only"])
 
     p_folder = None
     p_output = None
@@ -52,6 +54,8 @@ if __name__ == "__main__":
     p_igr_pattern = None
     p_hash = "crc32"
     p_sourcecode_only = False
+    p_use_cloc = False
+    p_use_cloc_path = None
 
     for op, p in optlist:
         if op == "-f":
@@ -71,6 +75,9 @@ if __name__ == "__main__":
             source_ext = "." + p
             FileInfo.SOURCE_CODE_EXT.append(source_ext)
             print(FileInfo.SOURCE_CODE_EXT)
+        elif op == "-c":
+            p_use_cloc = True
+            p_use_cloc_path = p
         else:
             print("Invalid Argument : %s / %s" % (op, p))
 
@@ -78,14 +85,19 @@ if __name__ == "__main__":
         print_usage()
         os._exit(1)
 
-    FIR = FilesInfoReader(p_hash, False)
+    FIR = FilesInfoReader(p_hash, p_use_cloc)
     FIR.set_root_path(p_folder)
+
     if p_igr_pattern != None:
         FIR.set_ignore_pattern(p_igr_pattern)
-    FIR.iterate(p_sourcecode_only, p_igr_enabled)
+
+    if p_use_cloc == True:
+        line_info = FIR.start_cloc(p_use_cloc_path)
+        FIR.iterate(p_sourcecode_only, p_igr_enabled, line_info)
+    else:
+        FIR.iterate(p_sourcecode_only, p_igr_enabled)
 
     try:
         FIR.save(p_output)
     except Exception as e:
         print("Error to save output : " + str(e))
-

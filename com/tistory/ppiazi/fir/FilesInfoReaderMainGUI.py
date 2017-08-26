@@ -18,15 +18,15 @@ limitations under the License.
 import os
 import sys
 
-from com.tistory.ppiazi.fir import FileInfo
-from com.tistory.ppiazi.fir import FilesInfoReaderMain
 from PySide import QtCore, QtGui
 
-import qt4.MainDlg
+import com.tistory.ppiazi.fir.qt4.MainDlg
+from com.tistory.ppiazi.fir import FileInfo
 from com.tistory.ppiazi.fir import FilesInfoReader
+from com.tistory.ppiazi.fir import FilesInfoReaderMain
 
 
-class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
+class FilesInfoReaderMainGUI(QtGui.QDialog, com.tistory.ppiazi.fir.qt4.MainDlg.Ui_Dialog):
     """
     GUI 버전 FilesInfoReader
     """
@@ -35,6 +35,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.setupUi(self)
         self.BtnBrowse.clicked.connect(self.show_target_folder_dlg)
         self.BtnOutputBrowse.clicked.connect(self.show_output_file_dlg)
+        self.BtnClocPathBrowse.clicked.connect(self.show_cloc_path_dlg)
         self.BtnStart.clicked.connect(self.read_info)
         self.BtnExit.clicked.connect(QtCore.QCoreApplication.instance().quit)
         self.ChkBoxExtOnly.stateChanged.connect(self.change_ext_only)
@@ -43,6 +44,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.EditOutput.setText("output.xlsx")
         self.EditIgnorePattern.setText(FilesInfoReader.IGNORE_SEARCH_PATTERN)
         self.ChkBoxIgnore.stateChanged.connect(self.change_ignore)
+        self.ChkBoxClocUse.stateChanged.connect(self.change_cloc_use)
         self.RadBtnHashGroup = QtGui.QButtonGroup()
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
@@ -50,6 +52,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (FilesInfoReaderMain.__version__))
         self._extonly_flag = False
         self._igr_enabled_flag = False
+        self._cloc_use_flag = False
 
     def change_ignore(self, state):
         """
@@ -63,6 +66,21 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         else:
             self.EditIgnorePattern.setEnabled(False)
             self._igr_enabled_flag = False
+
+    def change_cloc_use(self, state):
+        """
+        CLOC 사용여부 체크 버튼 이벤트를 처리한다.
+        :param state:
+        :return:
+        """
+        if state == QtCore.Qt.Checked:
+            self.BtnClocPathBrowse.setEnabled(True)
+            #self.EditClocPath.setEnabled(True)
+            self._cloc_use_flag = True
+        else:
+            self.BtnClocPathBrowse.setEnabled(False)
+            #self.EditClocPath.setEnabled(False)
+            self._cloc_use_flag = False
 
     def change_ext_only(self, state):
         """
@@ -92,6 +110,14 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         """
         output_file, tmp = QtGui.QFileDialog.getSaveFileName(self, "Output File")
         self.EditOutput.setText(output_file)
+
+    def show_cloc_path_dlg(self):
+        """
+        CLOC 파일 지정 버튼 이벤트를 처리한다.
+        :return:
+        """
+        output_file, tmp = QtGui.QFileDialog.getOpenFileName(self, "CLOC File")
+        self.EditClocPath.setText(output_file)
 
     def read_info(self):
         """
@@ -135,11 +161,17 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         else:
             hash_method = "crc32"
 
-        fir = FilesInfoReader.FilesInfoReader(hash_method)
+        fir = FilesInfoReader.FilesInfoReader(hash_method, self._cloc_use_flag)
         fir.set_root_path(target_folder)
         if igr_enabled == True:
             fir.set_ignore_pattern(self.EditIgnorePattern.text())
-        fir.iterate(ext_only, igr_enabled)
+
+        if self._cloc_use_flag == False:
+            fir.iterate(ext_only, igr_enabled)
+        else:
+            p_use_cloc_path = self.EditClocPath.text()
+            line_info = fir.start_cloc(p_use_cloc_path)
+            fir.iterate(ext_only, igr_enabled, line_info)
 
         try:
             fir.save(self.EditOutput.text())
