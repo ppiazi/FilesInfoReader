@@ -15,13 +15,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import sys
 import os
-import qt4.MainDlg
+import sys
+
+from com.tistory.ppiazi.fir import FileInfo
+from com.tistory.ppiazi.fir import FilesInfoReaderMain
 from PySide import QtCore, QtGui
-import FileInfo
-import FilesInfoReader
-import FilesInfoReaderMain
+
+import qt4.MainDlg
+from com.tistory.ppiazi.fir import FilesInfoReader
+
 
 class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
     """

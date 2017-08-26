@@ -14,13 +14,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import os
-import os.path
 import logging
 import logging.handlers
-import FilesInfoDB
-import FileInfo
+import os
+import os.path
 import re
+
+from com.tistory.ppiazi.fir.FilesInfoDB import FilesInfoDB
+
+from com.tistory.ppiazi.fir import FileInfo
 
 __author__ = 'ppiazi'
 

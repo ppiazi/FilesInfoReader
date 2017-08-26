@@ -14,12 +14,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import sys
-import os
 import getopt
-import FileInfo
+import os
+import sys
 
-from FilesInfoReader import FilesInfoReader
+from com.tistory.ppiazi.fir.FileInfo import FileInfo
+
+from com.tistory.ppiazi.fir.FilesInfoReader import FilesInfoReader
 
 __author__ = 'ppiazi'
 __version__ = 'v1.1.6r1'
