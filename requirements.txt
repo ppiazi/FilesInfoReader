@@ -1,3 +1,3 @@
-pyside
+pyqt5
 XlsxWriter
 beautifulsoup4

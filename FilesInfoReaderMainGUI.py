@@ -19,7 +19,7 @@ import configparser
 import os
 import sys
 
-from PySide import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import FileInfo
 import FilesInfoReaderMain
@@ -28,7 +28,7 @@ import qt4.MainDlg
 
 CONFIG_FILE = "config.ini"
 
-class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
+class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
     """
     GUI 버전 FilesInfoReader
     """
@@ -56,7 +56,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
 
         self.ChkBoxIgnore.stateChanged.connect(self.change_ignore)
         self.ChkBoxClocUse.stateChanged.connect(self.change_cloc_use)
-        self.RadBtnHashGroup = QtGui.QButtonGroup()
+        self.RadBtnHashGroup = QtWidgets.QButtonGroup()
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
@@ -137,7 +137,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         타켓 폴더 지정 버튼 이벤트 처리한다.
         :return:
         """
-        folder = QtGui.QFileDialog.getExistingDirectory(self, "Select Folder")
+        folder = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Folder")
         self.EditTargetFolder.setText(folder)
 
     def show_output_file_dlg(self):
@@ -145,7 +145,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         아웃풋 폴더 지정 버튼 이벤트를 처리한다.
         :return:
         """
-        output_file, tmp = QtGui.QFileDialog.getSaveFileName(self, "Output File")
+        output_file, tmp = QtWidgets.QFileDialog.getSaveFileName(self, "Output File")
         self.EditOutput.setText(output_file)
 
     def show_cloc_path_dlg(self):
@@ -153,7 +153,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         CLOC 파일 지정 버튼 이벤트를 처리한다.
         :return:
         """
-        output_file, tmp = QtGui.QFileDialog.getOpenFileName(self, "CLOC File")
+        output_file, tmp = QtWidgets.QFileDialog.getOpenFileName(self, "CLOC File")
         self.EditClocPath.setText(output_file)
 
     def read_info(self):
@@ -223,7 +223,7 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         :param msg:
         :return:
         """
-        QtGui.QMessageBox.question(self, "Warning", msg, QtGui.QMessageBox.Yes)
+        QtWidgets.QMessageBox.question(self, "Warning", msg, QtWidgets.QMessageBox.Yes)
 
     def _info(self, msg):
         """
@@ -231,10 +231,10 @@ class FilesInfoReaderMainGUI(QtGui.QDialog, qt4.MainDlg.Ui_Dialog):
         :param msg:
         :return:
         """
-        QtGui.QMessageBox.question(self, "Info", msg, QtGui.QMessageBox.Yes)
+        QtWidgets.QMessageBox.question(self, "Info", msg, QtWidgets.QMessageBox.Yes)
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     diag = FilesInfoReaderMainGUI()
     diag.show()
     sys.exit(app.exec_())
