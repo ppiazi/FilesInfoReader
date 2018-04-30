@@ -3,7 +3,7 @@
 
 # 필요한 패키지
  - XlsxWriter : http://xlsxwriter.readthedocs.io/
- - PyQt5 : https://www.riverbankcomputing.com/software/pyqt/intro
+ - PySide2 : http://wiki.qt.io/Qt_for_Python
  - beautifulsoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
    아래와 같이 필요한 패키지를 설치할 수 있다.
