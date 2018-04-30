@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'MainDlg.ui'
 #
-# Created by: PyQt5 UI code generator 5.9
+# Created: Mon Apr 30 18:28:24 2018
+#      by: pyside2-uic  running on PySide2 5.9.0a1.dev1524639684
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -21,9 +22,9 @@ class Ui_Dialog(object):
         self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 271))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
+        self.verticalLayout.setSpacing(10)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName("verticalLayout")
         self.LayoutTargetFolder = QtWidgets.QHBoxLayout()
         self.LayoutTargetFolder.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
@@ -137,26 +138,25 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "FilesInfoReader GUI"))
-        self.label.setText(_translate("Dialog", "TargetFolder"))
-        self.BtnBrowse.setText(_translate("Dialog", "Browse"))
-        self.label_3.setText(_translate("Dialog", "Output"))
-        self.BtnOutputBrowse.setText(_translate("Dialog", "Browse"))
-        self.label_6.setText(_translate("Dialog", "Hash"))
-        self.RadBtnCrc32.setText(_translate("Dialog", "CRC32"))
-        self.RadBtnMD5.setText(_translate("Dialog", "MD5"))
-        self.RadBtnSHA1.setText(_translate("Dialog", "SHA1"))
-        self.ChkBoxIgnore.setText(_translate("Dialog", "Ignore"))
-        self.label_5.setText(_translate("Dialog", "Pattern"))
-        self.label_4.setText(_translate("Dialog", "Source Ext"))
-        self.ChkBoxExtOnly.setText(_translate("Dialog", "Ext Only"))
-        self.label_2.setText(_translate("Dialog", "Extensions"))
-        self.ChkBoxClocUse.setText(_translate("Dialog", "CLOC use"))
-        self.label_7.setText(_translate("Dialog", "Cloc Path"))
-        self.BtnClocPathBrowse.setText(_translate("Dialog", "Browse"))
-        self.BtnStart.setText(_translate("Dialog", "Start"))
-        self.BtnExit.setText(_translate("Dialog", "Exit"))
+        Dialog.setWindowTitle(QtWidgets.QApplication.translate("Dialog", "FilesInfoReader GUI", None, -1))
+        self.label.setText(QtWidgets.QApplication.translate("Dialog", "TargetFolder", None, -1))
+        self.BtnBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
+        self.label_3.setText(QtWidgets.QApplication.translate("Dialog", "Output", None, -1))
+        self.BtnOutputBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
+        self.label_6.setText(QtWidgets.QApplication.translate("Dialog", "Hash", None, -1))
+        self.RadBtnCrc32.setText(QtWidgets.QApplication.translate("Dialog", "CRC32", None, -1))
+        self.RadBtnMD5.setText(QtWidgets.QApplication.translate("Dialog", "MD5", None, -1))
+        self.RadBtnSHA1.setText(QtWidgets.QApplication.translate("Dialog", "SHA1", None, -1))
+        self.ChkBoxIgnore.setText(QtWidgets.QApplication.translate("Dialog", "Ignore", None, -1))
+        self.label_5.setText(QtWidgets.QApplication.translate("Dialog", "Pattern", None, -1))
+        self.label_4.setText(QtWidgets.QApplication.translate("Dialog", "Source Ext", None, -1))
+        self.ChkBoxExtOnly.setText(QtWidgets.QApplication.translate("Dialog", "Ext Only", None, -1))
+        self.label_2.setText(QtWidgets.QApplication.translate("Dialog", "Extensions", None, -1))
+        self.ChkBoxClocUse.setText(QtWidgets.QApplication.translate("Dialog", "CLOC use", None, -1))
+        self.label_7.setText(QtWidgets.QApplication.translate("Dialog", "Cloc Path", None, -1))
+        self.BtnClocPathBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
+        self.BtnStart.setText(QtWidgets.QApplication.translate("Dialog", "Start", None, -1))
+        self.BtnExit.setText(QtWidgets.QApplication.translate("Dialog", "Exit", None, -1))
 
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@ import configparser
 import os
 import sys
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore, QtGui, QtWidgets
 
 import FileInfo
 import FilesInfoReaderMain
