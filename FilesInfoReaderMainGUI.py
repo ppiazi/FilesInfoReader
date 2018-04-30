@@ -66,6 +66,8 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         self._igr_enabled_flag = False
         self._cloc_use_flag = False
 
+        self.setFixedSize(self.size())
+
     def close_app(self):
         # before close, try to save current status into config.ini
         f = open(CONFIG_FILE, "w")
