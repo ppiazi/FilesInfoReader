@@ -1,9 +1,9 @@
 # 설명
-폴더를 지정하여, CRC32 / 수정된 날짜(시간) / 파일 크기 등 필요한 정보를 읽어들여 특정 파일로 저장하는 간단한 유틸리티.
+폴더를 지정하여, 해시(crc32, md5, sha1) / 수정된 날짜(시간) / 파일 크기 등 필요한 정보를 읽어들여 특정 파일로 저장하는 간단한 유틸리티.
 
 # 필요한 패키지
  - XlsxWriter : http://xlsxwriter.readthedocs.io/
- - pyside : https://wiki.qt.io/PySide
+ - PyQt5 : https://www.riverbankcomputing.com/software/pyqt/intro
  - beautifulsoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
    아래와 같이 필요한 패키지를 설치할 수 있다.
