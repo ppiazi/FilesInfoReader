@@ -22,7 +22,7 @@ from FileInfo import FileInfo
 from FilesInfoReader import FilesInfoReader
 
 __author__ = 'ppiazi'
-__version__ = 'v1.1.7'
+__version__ = 'v1.1.7.p1'
 
 def print_usage():
     """

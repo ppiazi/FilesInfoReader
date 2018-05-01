@@ -7,7 +7,7 @@ We are deeply grateful to these developers for their work and contributions.
 Any questions about our use of licensed work can be sent to ppiazi@gmail.com
 
 ----------------------------------------------------------------------------------------------------------------
-PySide
+PySide2
     https://wiki.qt.io/PySide
     Copyright (C) 1991, 1999 Free Software Foundation, Inc.
     LGPL-2.1
