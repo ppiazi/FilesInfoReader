@@ -19,6 +19,7 @@ import logging.handlers
 import os
 import os.path
 import re
+import tqdm
 
 from FilesInfoDB import FilesInfoDB
 import FileInfo
@@ -91,6 +92,11 @@ class FilesInfoReader:
 
         return line_info
 
+    def walk_dir(self, target_root):
+        for dirpath, dirs, files in os.walk(target_root):
+            for filename in files:
+                yield os.path.abspath(os.path.join(dirpath, filename))
+
     def iterate(self, ext_only=False, igr_enabled=False, line_info={}):
         """
         Start to iterate folders and gather file information.
@@ -100,14 +106,22 @@ class FilesInfoReader:
         """
         re_igr_pattern = re.compile(self.igr_pattern)
 
-        for (root, _, files) in os.walk(self.root_path):
-            log_str = "Entering %s " % (root)
-            self.logger.info(log_str)
+        sizetotal = 0
+        for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="filfes", ascii=True):
+            sizetotal += os.stat(filepath).st_size
 
-            for afile in files:
+        with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024, ascii=True) as pbar:
+            for filepath in self.walk_dir(self.root_path):
+                root = os.path.dirname(filepath)
+                afile = os.path.basename(filepath)
+                log_str = "Entering %s " % (root)
+                self.logger.info(log_str)
+
                 log_str = "\tReading file info : %s" % afile
                 self.logger.info(log_str)
                 full_file_name = os.path.join(root, afile)
+
+                pbar.update(os.stat(filepath).st_size)
 
                 file_info = FileInfo.FileInfo(full_file_name)
 
@@ -156,11 +170,11 @@ class FilesInfoReader:
                 # columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
                 if self.cloc_use == False:
                     self.file_info_list.insert(full_file_name,
-                                               [file_name, folder_name, modified_time_str, check_sum,
+                                            [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count])
                 else:
                     self.file_info_list.insert(full_file_name,
-                                               [file_name, folder_name, modified_time_str, check_sum,
+                                            [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count, source_code_comment_count, source_code_blank_count])
 
     def save(self, file_name):

@@ -1,3 +1,4 @@
 pyside2
 XlsxWriter
 beautifulsoup4
+tqdm
