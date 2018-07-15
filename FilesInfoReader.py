@@ -57,7 +57,7 @@ class FilesInfoReader:
             self.hash_code = FileInfo.HASH_CODE_CRC32
 
         # Setting up logging module
-        logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(level=logging.ERROR)
         self.logger = logging.getLogger("FilesInfoReader")
         self.igr_pattern = IGNORE_SEARCH_PATTERN
 
@@ -108,7 +108,11 @@ class FilesInfoReader:
 
         sizetotal = 0
         for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="filfes", ascii=True):
-            sizetotal += os.stat(filepath).st_size
+            try:
+                sizetotal += os.stat(filepath).st_size
+            except  Exception as e:
+                self.logger.warning("\tFile access error : " + str(e))
+                continue
 
         with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024, ascii=True) as pbar:
             for filepath in self.walk_dir(self.root_path):
@@ -121,7 +125,11 @@ class FilesInfoReader:
                 self.logger.info(log_str)
                 full_file_name = os.path.join(root, afile)
 
-                pbar.update(os.stat(filepath).st_size)
+                try:
+                    pbar.update(os.stat(filepath).st_size)
+                except  Exception as e:
+                    self.logger.warning("\tFile access error : " + str(e))
+                    continue
 
                 file_info = FileInfo.FileInfo(full_file_name)
 
