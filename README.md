@@ -5,7 +5,8 @@
  - XlsxWriter : http://xlsxwriter.readthedocs.io/
  - PySide2 : http://wiki.qt.io/Qt_for_Python
  - beautifulsoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
-
+ - tqdm : https://tqdm.github.io/
+ 
    아래와 같이 필요한 패키지를 설치할 수 있다.
    pip install -r requirements.txt 
 
