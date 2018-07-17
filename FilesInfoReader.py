@@ -57,7 +57,7 @@ class FilesInfoReader:
             self.hash_code = FileInfo.HASH_CODE_CRC32
 
         # Setting up logging module
-        logging.basicConfig(level=logging.ERROR)
+        logging.basicConfig(level=logging.WARNING)
         self.logger = logging.getLogger("FilesInfoReader")
         self.igr_pattern = IGNORE_SEARCH_PATTERN
 
@@ -82,13 +82,13 @@ class FilesInfoReader:
 
         :return:
         """
-        self.logger.info("Starting CLOC")
+        self.logger.warning("Starting CLOC")
 
         cloc_parser = ClocXmlParser(cloc_path)
         ret = cloc_parser.executeCloc(self.root_path)
         line_info = cloc_parser.parseXml(r".\temp_cloc.xml")
 
-        self.logger.info("Done")
+        self.logger.warning("Done")
 
         return line_info
 
@@ -107,7 +107,7 @@ class FilesInfoReader:
         re_igr_pattern = re.compile(self.igr_pattern)
 
         sizetotal = 0
-        for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="filfes", ascii=True):
+        for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="files", ascii=True):
             try:
                 sizetotal += os.stat(filepath).st_size
             except  Exception as e:
