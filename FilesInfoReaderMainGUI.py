@@ -19,7 +19,10 @@ import configparser
 import os
 import sys
 
-from PySide2 import QtCore, QtGui, QtWidgets
+try:
+    from PySide2 import QtCore, QtGui, QtWidgets
+except:
+    from PyQt2 import QtCore, QtGui, QtWidgets
 
 import FileInfo
 import FilesInfoReaderMain

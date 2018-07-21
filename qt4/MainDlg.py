@@ -7,7 +7,10 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PySide2 import QtCore, QtGui, QtWidgets
+try:
+    from PySide2 import QtCore, QtGui, QtWidgets
+except:
+    from PyQt2 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
