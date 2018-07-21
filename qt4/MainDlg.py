@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'MainDlg.ui'
 #
-# Created: Mon Apr 30 18:28:24 2018
-#      by: pyside2-uic  running on PySide2 5.9.0a1.dev1524639684
+# Created: Sun Jul 22 00:00:38 2018
+#      by: pyside2-uic 2.0.0 running on PySide2 5.6.0~a1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -15,14 +15,14 @@ except:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(501, 266)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        Dialog.resize(501, 302)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
         self.layoutWidget = QtWidgets.QWidget(Dialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 271))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 479, 328))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setSpacing(10)
@@ -160,14 +160,4 @@ class Ui_Dialog(object):
         self.BtnClocPathBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
         self.BtnStart.setText(QtWidgets.QApplication.translate("Dialog", "Start", None, -1))
         self.BtnExit.setText(QtWidgets.QApplication.translate("Dialog", "Exit", None, -1))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
 
