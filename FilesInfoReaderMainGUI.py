@@ -58,6 +58,9 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         super(FilesInfoReaderMainGUI, self).__init__(parent)
         self.setupUi(self)
 
+        # Set application icon
+        self.setWindowIcon(QtGui.QIcon("icon.ico"))
+
         # 설정 파일을 읽는다.
         self._load_config()
 
