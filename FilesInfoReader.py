@@ -107,14 +107,14 @@ class FilesInfoReader:
         re_igr_pattern = re.compile(self.igr_pattern)
 
         sizetotal = 0
-        for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="files", ascii=True):
+        for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="files"):
             try:
                 sizetotal += os.stat(filepath).st_size
             except  Exception as e:
                 self.logger.warning("\tFile access error : " + str(e))
                 continue
 
-        with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024, ascii=True) as pbar:
+        with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024) as pbar:
             for filepath in self.walk_dir(self.root_path):
                 root = os.path.dirname(filepath)
                 afile = os.path.basename(filepath)
