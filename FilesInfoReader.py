@@ -92,7 +92,7 @@ class FilesInfoReader:
 
         return line_info
 
-    def walk_dir(self, target_root):
+    def _walk_dir(self, target_root):
         for dirpath, dirs, files in os.walk(target_root):
             for filename in files:
                 yield os.path.abspath(os.path.join(dirpath, filename))
@@ -107,15 +107,13 @@ class FilesInfoReader:
         re_igr_pattern = re.compile(self.igr_pattern)
 
         sizetotal = 0
-        for filepath in tqdm.tqdm(self.walk_dir(self.root_path), unit="files"):
-            try:
-                sizetotal += os.stat(filepath).st_size
-            except  Exception as e:
-                self.logger.warning("\tFile access error : " + str(e))
-                continue
+        sizetotal = self._get_total_size()
 
+        self._iterate_all_files(sizetotal, igr_enabled, re_igr_pattern, ext_only, line_info)
+
+    def _iterate_all_files(self, sizetotal, igr_enabled, re_igr_pattern, ext_only, line_info):
         with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024) as pbar:
-            for filepath in self.walk_dir(self.root_path):
+            for filepath in self._walk_dir(self.root_path):
                 root = os.path.dirname(filepath)
                 afile = os.path.basename(filepath)
                 log_str = "Entering %s " % (root)
@@ -184,6 +182,17 @@ class FilesInfoReader:
                     self.file_info_list.insert(full_file_name,
                                             [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count, source_code_comment_count, source_code_blank_count])
+
+    def _get_total_size(self):
+        sizetotal = 0
+
+        for filepath in tqdm.tqdm(self._walk_dir(self.root_path), unit="files"):
+            try:
+                sizetotal += os.stat(filepath).st_size
+            except  Exception as e:
+                self.logger.warning("\tFile access error : " + str(e))
+                continue
+        return sizetotal
 
     def save(self, file_name):
         """
