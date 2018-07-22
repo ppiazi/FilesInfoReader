@@ -208,7 +208,9 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         아웃풋 폴더 지정 버튼 이벤트를 처리한다.
         :return:
         """
-        output_file, tmp = QtWidgets.QFileDialog.getSaveFileName(self, "Output File")
+        output_file, tmp = QtWidgets.QFileDialog.getSaveFileName(self, "Output File", "output.xlsx", filter="*.xlsx")
+        if output_file == "":
+            output_file = "output.xlsx"
         self.EditOutput.setText(output_file)
 
     def show_cloc_path_dlg(self):
