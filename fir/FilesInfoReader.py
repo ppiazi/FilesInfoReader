@@ -21,13 +21,13 @@ import os.path
 import re
 import tqdm
 
-from FilesInfoDB import FilesInfoDB
-import FileInfo
-from ClocXmlParser import ClocXmlParser
+from fir.FilesInfoDB import FilesInfoDB
+import fir.FileInfo
+from fir.ClocXmlParser import ClocXmlParser
 
 __author__ = 'ppiazi'
 
-SEARCH_TARGET_EXT = FileInfo.SOURCE_CODE_EXT
+SEARCH_TARGET_EXT = fir.FileInfo.SOURCE_CODE_EXT
 IGNORE_SEARCH_PATTERN = "\.git"
 
 FIELDS_COMULMNS_NORMAL = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
@@ -44,28 +44,31 @@ class FilesInfoReader:
         else:
             selected_columns = FIELDS_COMULMNS_CLOC
 
-        self.file_info_list = FilesInfoDB(columns=selected_columns)
-        self.flag_modified_date = True
-        self.flag_check_sum = True
-        self.root_path = None
+        self.__file_info_db = FilesInfoDB(columns=selected_columns)
+        self.__flag_modified_date = True
+        self.__flag_check_sum = True
+        self.__root_path = None
 
         if hash_code == "md5":
-            self.hash_code = FileInfo.HASH_CODE_MD5
+            self.hash_code = fir.FileInfo.HASH_CODE_MD5
         elif hash_code == "sha1":
-            self.hash_code = FileInfo.HASH_CODE_SHA1
+            self.hash_code = fir.FileInfo.HASH_CODE_SHA1
         else:
-            self.hash_code = FileInfo.HASH_CODE_CRC32
+            self.hash_code = fir.FileInfo.HASH_CODE_CRC32
 
         # Setting up logging module
         logging.basicConfig(level=logging.WARNING)
-        self.logger = logging.getLogger("FilesInfoReader")
-        self.igr_pattern = IGNORE_SEARCH_PATTERN
+        self.__logger = logging.getLogger("FilesInfoReader")
+        self.__igr_pattern = IGNORE_SEARCH_PATTERN
+    
+    def get_file_info_db(self):
+        return self.__file_info_db
 
     def set_ignore_pattern(self, igr_pattern):
-        self.igr_pattern = igr_pattern
+        self.__igr_pattern = igr_pattern
 
     def get_path_ignore_pattern(self):
-        return self.igr_pattern
+        return self.__igr_pattern
 
     def set_root_path(self, root_path):
         """
@@ -74,7 +77,7 @@ class FilesInfoReader:
         :param root_path:
         :return:
         """
-        self.root_path = root_path
+        self.__root_path = root_path
 
     def start_cloc(self, cloc_path):
         """
@@ -82,13 +85,13 @@ class FilesInfoReader:
 
         :return:
         """
-        self.logger.warning("Starting CLOC")
+        self.__logger.warning("Starting CLOC")
 
         cloc_parser = ClocXmlParser(cloc_path)
-        ret = cloc_parser.executeCloc(self.root_path)
+        ret = cloc_parser.executeCloc(self.__root_path)
         line_info = cloc_parser.parseXml(r".\temp_cloc.xml")
 
-        self.logger.warning("Done")
+        self.__logger.warning("Done")
 
         return line_info
 
@@ -104,7 +107,7 @@ class FilesInfoReader:
         :param ext_only:
         :return:
         """
-        re_igr_pattern = re.compile(self.igr_pattern)
+        re_igr_pattern = re.compile(self.__igr_pattern)
 
         sizetotal = 0
         sizetotal = self._get_total_size()
@@ -113,32 +116,32 @@ class FilesInfoReader:
 
     def _iterate_all_files(self, sizetotal, igr_enabled, re_igr_pattern, ext_only, line_info):
         with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024) as pbar:
-            for filepath in self._walk_dir(self.root_path):
+            for filepath in self._walk_dir(self.__root_path):
                 root = os.path.dirname(filepath)
                 afile = os.path.basename(filepath)
                 log_str = "Entering %s " % (root)
-                self.logger.info(log_str)
+                self.__logger.info(log_str)
 
                 log_str = "\tReading file info : %s" % afile
-                self.logger.info(log_str)
+                self.__logger.info(log_str)
                 full_file_name = os.path.join(root, afile)
 
                 try:
                     pbar.update(os.stat(filepath).st_size)
                 except  Exception as e:
-                    self.logger.warning("\tFile access error : " + str(e))
+                    self.__logger.warning("\tFile access error : " + str(e))
                     continue
 
-                file_info = FileInfo.FileInfo(full_file_name)
+                file_info = fir.FileInfo.FileInfo(full_file_name)
 
                 if igr_enabled == True:
                     m = re_igr_pattern.search(full_file_name)
                     if m != None:
-                        self.logger.info("\tPath Pattern Ignored : %s" % root)
+                        self.__logger.info("\tPath Pattern Ignored : %s" % root)
                         continue
 
                 if ext_only and file_info.get_file_ext().lower() not in SEARCH_TARGET_EXT:
-                    self.logger.info("\tExtension Ignored : %s" % afile)
+                    self.__logger.info("\tExtension Ignored : %s" % afile)
                     continue
 
                 folder_name, file_name = os.path.split(full_file_name)
@@ -160,12 +163,12 @@ class FilesInfoReader:
                             source_code_blank_count = line_info[full_file_name]["blank"]
                         except Exception as e:
                             # if there is no line info in cloc output file
-                            self.logger.warning("\tNot Found in cloc : " + str(e))
+                            self.__logger.warning("\tNot Found in cloc : " + str(e))
                             source_code_line_count = file_info.get_line_count()
                             source_code_comment_count = 0
                             source_code_blank_count = 0
                 except Exception as e:
-                    self.logger.error("\tException : " + str(e))
+                    self.__logger.error("\tException : " + str(e))
                     check_sum = str(e)
                     modified_time_str = str(e)
                     file_size = 0
@@ -175,22 +178,22 @@ class FilesInfoReader:
 
                 # columns=["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
                 if self.cloc_use == False:
-                    self.file_info_list.insert(full_file_name,
+                    self.__file_info_db.insert(full_file_name,
                                             [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count])
                 else:
-                    self.file_info_list.insert(full_file_name,
+                    self.__file_info_db.insert(full_file_name,
                                             [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count, source_code_comment_count, source_code_blank_count])
 
     def _get_total_size(self):
         sizetotal = 0
 
-        for filepath in tqdm.tqdm(self._walk_dir(self.root_path), unit="files"):
+        for filepath in tqdm.tqdm(self._walk_dir(self.__root_path), unit="files"):
             try:
                 sizetotal += os.stat(filepath).st_size
             except  Exception as e:
-                self.logger.warning("\tFile access error : " + str(e))
+                self.__logger.warning("\tFile access error : " + str(e))
                 continue
         return sizetotal
 
@@ -203,10 +206,10 @@ class FilesInfoReader:
         """
 
         if file_name == "stdout":
-            self.file_info_list.to_stdout(file_name)
+            self.__file_info_db.to_stdout(file_name)
 
         extension = os.path.splitext(file_name)[1]
         if extension != ".xlsx" :
             file_name = file_name + ".xlsx"
 
-        self.file_info_list.to_csv(file_name)
+        self.__file_info_db.to_csv(file_name)

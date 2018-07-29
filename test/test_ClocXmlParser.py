@@ -18,11 +18,11 @@ import unittest
 
 from fir.ClocXmlParser import ClocXmlParser
 
-TEST_TARGET_NOFILE = r"test\nofile.xml"
-TEST_TARGET1 = r"test\test1.xml"
-TEST_TARGET2 = r"test\test2.xml"
+TEST_TARGET_NOFILE = r".\test\nofile.xml"
+TEST_TARGET1 = r".\test\test1.xml"
+TEST_TARGET2 = r".\test\test2.xml"
 
-class ClocXmlParserTest(unittest.TestCase):
+class test_ClocXmlParser(unittest.TestCase):
     testTarget = None
 
     def setUp(self):

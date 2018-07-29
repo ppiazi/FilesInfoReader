@@ -34,16 +34,16 @@ class FileInfo:
     File 하나에 대한 정보를 저장하는 클래스
     """
     def __init__(self, full_file):
-        self.full_file = full_file
-        self.file_info = {}
-        self.file_ext = ""
-        self.file_info["FilePath"] = self.full_file
-        self.file_info["CheckSum"] = ""
-        self.file_info["FileMTime"] = 0
-        self.file_info["FileSize"] = 0
-        self.file_info["LineCount"] = 0
-        self.file_handler = None
-        self.file_type = FILE_TYPE_NORMAL
+        self.__full_file = full_file
+        self.__file_info = {}
+        self.__file_ext = ""
+        self.__file_info["FilePath"] = self.__full_file
+        self.__file_info["CheckSum"] = ""
+        self.__file_info["FileMTime"] = 0
+        self.__file_info["FileSize"] = 0
+        self.__file_info["LineCount"] = 0
+        self.__file_handler = None
+        self.__file_type = FILE_TYPE_NORMAL
         self.check_file_type()
 
     def check_file_type(self):
@@ -52,12 +52,12 @@ class FileInfo:
 
         :return:
         """
-        self.file_ext = os.path.splitext(self.full_file)[-1]
+        self.__file_ext = os.path.splitext(self.__full_file)[-1]
 
-        if self.file_ext.lower() in SOURCE_CODE_EXT:
-            self.file_type = FILE_TYPE_SOURCECODE
+        if self.__file_ext.lower() in SOURCE_CODE_EXT:
+            self.__file_type = FILE_TYPE_SOURCECODE
         else:
-            self.file_type = FILE_TYPE_NORMAL
+            self.__file_type = FILE_TYPE_NORMAL
 
     def get_file_ext(self):
         """
@@ -65,7 +65,7 @@ class FileInfo:
 
         :return:
         """
-        return self.file_ext
+        return self.__file_ext
 
     def get_file_type(self):
         """
@@ -73,7 +73,7 @@ class FileInfo:
 
         :return:
         """
-        return self.file_type
+        return self.__file_type
 
     def read_info(self, hash_code=HASH_CODE_CRC32):
         """
@@ -82,7 +82,7 @@ class FileInfo:
         :param hash_code:
         :return:
         """
-        self.file_handler = open(self.full_file, "rb")
+        self.__file_handler = open(self.__full_file, "rb")
 
         if hash_code == HASH_CODE_MD5:
             self.read_md5()
@@ -95,28 +95,28 @@ class FileInfo:
         self.read_size()
         self.read_line_count()
 
-        self.file_handler.close()
+        self.__file_handler.close()
 
     def get_checksum(self):
         """
         File의 체크섬을 반환한다.
         :return:
         """
-        return self.file_info["CheckSum"]
+        return self.__file_info["CheckSum"]
 
     def get_mtime(self):
         """
         File의 수정일시를 반환한다.
         :return:
         """
-        return self.file_info["FileMTime"]
+        return self.__file_info["FileMTime"]
 
     def get_size(self):
         """
         File의 크기를 반환한다.
         :return:
         """
-        return self.file_info["FileSize"]
+        return self.__file_info["FileSize"]
 
     def get_line_count(self):
         """
@@ -124,7 +124,7 @@ class FileInfo:
         아니면 0을 반환한다.
         :return:
         """
-        return self.file_info["LineCount"]
+        return self.__file_info["LineCount"]
 
     def read_crc32(self):
         """
@@ -135,12 +135,12 @@ class FileInfo:
         :return: CRC32 결과
         """
         # reset file pointer
-        self.file_handler.seek(0)
-        file_data = self.file_handler.read()
+        self.__file_handler.seek(0)
+        file_data = self.__file_handler.read()
         check_sum_int = binascii.crc32(file_data) & 0xFFFFFFFF
         check_sum_hex = "0x%08X" % check_sum_int
 
-        self.file_info["CheckSum"] = check_sum_hex
+        self.__file_info["CheckSum"] = check_sum_hex
 
     def read_sha1(self):
         """
@@ -151,13 +151,13 @@ class FileInfo:
         :return: SHA-1 결과
         """
         # reset file pointer
-        self.file_handler.seek(0)
-        file_data = self.file_handler.read()
+        self.__file_handler.seek(0)
+        file_data = self.__file_handler.read()
         sha1 = hashlib.sha1()
         sha1.update(file_data)
         check_sum_hex = sha1.hexdigest().upper()
 
-        self.file_info["CheckSum"] = check_sum_hex
+        self.__file_info["CheckSum"] = check_sum_hex
 
     def read_md5(self):
         """
@@ -168,13 +168,13 @@ class FileInfo:
         :return: MD5 결과
         """
         # reset file pointer
-        self.file_handler.seek(0)
-        file_data = self.file_handler.read()
+        self.__file_handler.seek(0)
+        file_data = self.__file_handler.read()
         md5 = hashlib.md5()
         md5.update(file_data)
         check_sum_hex = md5.hexdigest().upper()
 
-        self.file_info["CheckSum"] = check_sum_hex
+        self.__file_info["CheckSum"] = check_sum_hex
 
     def read_mtime(self):
         """
@@ -184,11 +184,11 @@ class FileInfo:
         :param file_name:
         :return:
         """
-        mtime = os.path.getmtime(self.full_file)
+        mtime = os.path.getmtime(self.__full_file)
         local_time = time.localtime(mtime)
         mtime_str = time.strftime("%Y-%m-%d %H:%M:%S", local_time)
 
-        self.file_info["FileMTime"] = mtime_str
+        self.__file_info["FileMTime"] = mtime_str
 
     def read_size(self):
         """
@@ -198,9 +198,9 @@ class FileInfo:
         :param file_name:
         :return:
         """
-        statinfo = os.stat(self.full_file)
+        statinfo = os.stat(self.__full_file)
 
-        self.file_info["FileSize"] = statinfo.st_size
+        self.__file_info["FileSize"] = statinfo.st_size
 
     def read_line_count(self):
         """
@@ -211,11 +211,11 @@ class FileInfo:
         """
         line_count = 0
 
-        if self.file_type == FILE_TYPE_SOURCECODE:
+        if self.__file_type == FILE_TYPE_SOURCECODE:
             # reset file pointer
-            self.file_handler.seek(0)
-            file_lines = self.file_handler.readlines()
+            self.__file_handler.seek(0)
+            file_lines = self.__file_handler.readlines()
 
             line_count = len(file_lines)
 
-        self.file_info["LineCount"] = line_count
+        self.__file_info["LineCount"] = line_count

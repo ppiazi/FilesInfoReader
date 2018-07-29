@@ -18,9 +18,8 @@ import getopt
 import os
 import sys
 
-from FileInfo import FileInfo
-from FilesInfoReader import FilesInfoReader
-import __init__
+from fir import __version__
+from fir.FilesInfoReader import FilesInfoReader
 
 def print_usage():
     """
@@ -28,7 +27,7 @@ def print_usage():
     :return:
     """
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>] [-g <pattern to ignore>")
-    print("    Version %s" % __init__.__version__)
+    print("    Version %s" % __version__)
     print("    Options:")
     print("    -f : (mandatory) set a target folder")
     print("    -o : (mandatory) set a file for result (-o stdout : means set stdout as output stream")
@@ -70,8 +69,8 @@ if __name__ == "__main__":
             p_sourcecode_only = True
         elif op == "-a":
             source_ext = "." + p
-            FileInfo.SOURCE_CODE_EXT.append(source_ext)
-            print(FileInfo.SOURCE_CODE_EXT)
+            fir.FileInfo.SOURCE_CODE_EXT.append(source_ext)
+            print(fir.FileInfo.SOURCE_CODE_EXT)
         elif op == "-c":
             p_use_cloc = True
             p_use_cloc_path = p

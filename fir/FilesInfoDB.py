@@ -28,6 +28,9 @@ class FilesInfoDB:
         self.__cols = columns
         self.__db = {}
 
+    def get_db(self):
+        return self.__db
+
     def insert(self, file_name, cols):
         """
         file_name을 key로, cols를 value로 내부 {} 에 저장한다.

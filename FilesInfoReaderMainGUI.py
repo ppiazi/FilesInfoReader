@@ -24,11 +24,10 @@ try:
 except:
     from PyQt2 import QtCore, QtGui, QtWidgets
 
-import FileInfo
-import FilesInfoReaderMain
-import FilesInfoReader
-import qt4.MainDlg
-import __init__
+import fir
+from fir.FilesInfoReader import FilesInfoReader
+from fir.FileInfo import FileInfo
+from fir.qt4.MainDlg import Ui_Dialog
 
 CONFIG_FILE = "config.ini"
 
@@ -54,7 +53,7 @@ class FirWorker(QtCore.QThread):
         except Exception as e:
             self.signal.sig.emit(str(e))
 
-class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
+class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
     """
     GUI 버전 FilesInfoReader
     """
@@ -86,11 +85,11 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         self._ui_handles["ChkBoxExtOnly"] = self.ChkBoxExtOnly
 
         self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(
-            FileInfo.SOURCE_CODE_EXT)))
+            fir.FileInfo.SOURCE_CODE_EXT)))
         self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(
-            FilesInfoReader.SEARCH_TARGET_EXT)))
+            fir.FilesInfoReader.SEARCH_TARGET_EXT)))
         self.EditOutput.setText(self._config.get("SETTING", "output_file",fallback="output.xlsx"))
-        self.EditIgnorePattern.setText(self._config.get("SETTING", "ignore_pattern", fallback=FilesInfoReader.IGNORE_SEARCH_PATTERN))
+        self.EditIgnorePattern.setText(self._config.get("SETTING", "ignore_pattern", fallback=fir.FilesInfoReader.IGNORE_SEARCH_PATTERN))
         self.EditTargetFolder.setText(self._config.get("SETTING", "target_folder", fallback=""))
         self.EditClocPath.setText(self._config.get("SETTING", "cloc_path", fallback=""))
 
@@ -107,7 +106,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
-        self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (__init__.__version__))
+        self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (fir.__version__))
 
         self._ui_handles["ChkBoxIgnore"] = self.ChkBoxIgnore
         self._ui_handles["ChkBoxClocUse"] = self.ChkBoxClocUse
@@ -264,20 +263,20 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         else:
             hash_method = "crc32"
 
-        self.fir = FilesInfoReader.FilesInfoReader(hash_method, self._cloc_use_flag)
+        self.fir_handle = FilesInfoReader(hash_method, self._cloc_use_flag)
 
-        self.fir.set_root_path(target_folder)
+        self.fir_handle.set_root_path(target_folder)
         if igr_enabled == True:
-            self.fir.set_ignore_pattern(self.EditIgnorePattern.text())
+            self.fir_handle.set_ignore_pattern(self.EditIgnorePattern.text())
 
         if self._cloc_use_flag == False:
             line_info = None
         else:
             p_use_cloc_path = self.EditClocPath.text()
-            line_info = self.fir.start_cloc(p_use_cloc_path)
+            line_info = self.fir_handle.start_cloc(p_use_cloc_path)
 
         #start fir.iterate
-        self._worker.set_data(self.fir, ext_only, igr_enabled, line_info)
+        self._worker.set_data(self.fir_handle, ext_only, igr_enabled, line_info)
         self._all_disable()
         self._worker.start()   
 
@@ -294,7 +293,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
     def _check_worker(self, end_status):
         if end_status == "DONE":
             try:
-                self.fir.save(self.EditOutput.text())
+                self.fir_handle.save(self.EditOutput.text())
             except Exception as e:
                 self._warning("Error to save output : " + str(e))
             else:
