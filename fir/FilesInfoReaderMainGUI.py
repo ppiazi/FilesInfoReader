@@ -28,6 +28,7 @@ import FileInfo
 import FilesInfoReaderMain
 import FilesInfoReader
 import qt4.MainDlg
+import __init__
 
 CONFIG_FILE = "config.ini"
 
@@ -106,7 +107,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, qt4.MainDlg.Ui_Dialog):
         self.RadBtnHashGroup.addButton(self.RadBtnCrc32)
         self.RadBtnHashGroup.addButton(self.RadBtnMD5)
         self.RadBtnHashGroup.addButton(self.RadBtnSHA1)
-        self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (FilesInfoReaderMain.__version__))
+        self.setWindowTitle("FilesInfoReader - %s by ppiazi" % (__init__.__version__))
 
         self._ui_handles["ChkBoxIgnore"] = self.ChkBoxIgnore
         self._ui_handles["ChkBoxClocUse"] = self.ChkBoxClocUse

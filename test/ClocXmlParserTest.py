@@ -16,17 +16,18 @@ limitations under the License.
 """
 import unittest
 
-from ClocXmlParser import ClocXmlParser
+from fir.ClocXmlParser import ClocXmlParser
 
-TEST_TARGET_NOFILE = "nofile.xml"
-TEST_TARGET1 = "test1.xml"
-TEST_TARGET2 = "test2.xml"
+TEST_TARGET_NOFILE = r"test\nofile.xml"
+TEST_TARGET1 = r"test\test1.xml"
+TEST_TARGET2 = r"test\test2.xml"
 
 class ClocXmlParserTest(unittest.TestCase):
     testTarget = None
 
     def setUp(self):
-        self.testTarget = ClocXmlParser()
+        cloc_path = r"..\util\cloc.exe"
+        self.testTarget = ClocXmlParser(cloc_path)
 
     def tearDown(self):
         pass

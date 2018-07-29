@@ -20,9 +20,7 @@ import sys
 
 from FileInfo import FileInfo
 from FilesInfoReader import FilesInfoReader
-
-__author__ = 'ppiazi'
-__version__ = 'v1.1.7.p3'
+import __init__
 
 def print_usage():
     """
@@ -30,7 +28,7 @@ def print_usage():
     :return:
     """
     print("FilesInfoReader.py [-f <folder>] [-o <output file>] [-h <crc32|md5|sha1>] [-s] [-a <extension>] [-g <pattern to ignore>")
-    print("    Version %s" % __version__)
+    print("    Version %s" % __init__.__version__)
     print("    Options:")
     print("    -f : (mandatory) set a target folder")
     print("    -o : (mandatory) set a file for result (-o stdout : means set stdout as output stream")
