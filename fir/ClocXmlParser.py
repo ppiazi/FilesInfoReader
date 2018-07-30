@@ -33,7 +33,7 @@ class ClocXmlParser:
             print(str(e))
             return None
 
-        self.soup = BeautifulSoup(f, "xml")
+        self.soup = BeautifulSoup(f, "lxml")
 
         f.close()
 

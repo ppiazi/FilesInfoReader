@@ -46,6 +46,9 @@ class FileInfo:
         self.__file_type = FILE_TYPE_NORMAL
         self.check_file_type()
 
+    def get_file_info(self):
+        return self.__file_info
+
     def check_file_type(self):
         """
         File 확장자를 보고, 내부 타입(SOURCECODE인지 아닌지)을 결정한다.

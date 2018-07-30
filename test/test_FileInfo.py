@@ -18,9 +18,9 @@ import unittest
 
 from fir.FileInfo import *
 
-TEST_TARGET1 = r".\test\test1.xml"
-TEST_TARGET2 = r".\test\test_FileInfo.py"
-TEST_TARGET3 = r".\test\nofile.cPp"
+TEST_TARGET1 = r"./test/test1.xml"
+TEST_TARGET2 = r"./test/test_FileInfo.py"
+TEST_TARGET3 = r"./test/nofile.cPp"
 
 class test_FileInfo(unittest.TestCase):
     def setUp(self):
@@ -31,19 +31,20 @@ class test_FileInfo(unittest.TestCase):
 
     def test_init(self):
         sut = FileInfo(TEST_TARGET1)
-        assert(sut.__file_info["FilePath"] == TEST_TARGET1)
-        assert(sut.__file_info["FileSize"] == 0)
-        assert(sut.file_type == FILE_TYPE_NORMAL)
+        __file_info = sut.get_file_info()
+        assert(__file_info["FilePath"] == TEST_TARGET1)
+        assert(__file_info["FileSize"] == 0)
+        assert(sut.get_file_type() == FILE_TYPE_NORMAL)
 
     def test_check_file_type_source_code(self):
         sut = FileInfo(TEST_TARGET3)
         sut.check_file_type()
-        assert(sut.file_type == FILE_TYPE_SOURCECODE)
+        assert(sut.get_file_type() == FILE_TYPE_SOURCECODE)
 
     def test_check_file_type_no_source_code(self):
         sut = FileInfo(TEST_TARGET1)
         sut.check_file_type()
-        assert(sut.file_type == FILE_TYPE_NORMAL)
+        assert(sut.get_file_type() == FILE_TYPE_NORMAL)
 
     def test_get_file_ext_1(self):
         sut = FileInfo(TEST_TARGET1)

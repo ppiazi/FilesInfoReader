@@ -30,7 +30,7 @@ class test_FilesInfoReader(unittest.TestCase):
         p_sourcecode_only = True
         p_igr_enabled = True
         fir = FilesInfoReader("crc32", p_cloc)
-        fir.set_root_path(r".\test")
+        fir.set_root_path(r"./test")
         fir.iterate(p_sourcecode_only, p_igr_enabled)
         file_info_db = fir.get_file_info_db()
         assert(len(file_info_db.get_db()) != 0)
