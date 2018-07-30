@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ppiazi/FilesInfoReader.svg)](https://travis-ci.org/ppiazi/FilesInfoReader)
+
 # 설명
 폴더를 지정하여, 해시(crc32, md5, sha1) / 수정된 날짜(시간) / 파일 크기 등 필요한 정보를 읽어들여 특정 파일로 저장하는 간단한 유틸리티.
 
