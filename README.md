@@ -20,6 +20,10 @@
 3. dist 폴더에 실행파일이 생성될 것이다.
 
 # GUI 설명
+![](https://t1.daumcdn.net/cfile/tistory/99F247355B5350662C)
+
+![](https://t1.daumcdn.net/cfile/tistory/992C5D3B5B5350741A)
+
 1. TargetFolder : 검색을 시작할 루트 폴더
 2. Output : 검색 결과를 저장할 파일 위치
 3. CRC32 / MD5 / SHA1 : Hash 계산 모드
