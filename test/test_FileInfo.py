@@ -18,9 +18,9 @@ import unittest
 
 from fir.FileInfo import *
 
-TEST_TARGET1 = r".\test\test1.xml"
-TEST_TARGET2 = r".\test\test_FileInfo.py"
-TEST_TARGET3 = r".\test\nofile.cPp"
+TEST_TARGET1 = r"./test/test1.xml"
+TEST_TARGET2 = r"./test/test_FileInfo.py"
+TEST_TARGET3 = r"./test/nofile.cPp"
 
 class test_FileInfo(unittest.TestCase):
     def setUp(self):
