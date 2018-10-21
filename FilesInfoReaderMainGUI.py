@@ -26,6 +26,8 @@ except:
 
 import fir
 from fir.FilesInfoReader import FilesInfoReader
+from fir.FilesInfoReader import OUTPUT_TYPE_EXCEL
+from fir.FilesInfoReader import OUTPUT_TYPE_WORD
 from fir.FileInfo import FileInfo
 from fir.qt4.MainDlg import Ui_Dialog
 
@@ -71,31 +73,46 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
         self._ui_handles = {}
 
         self.BtnBrowse.clicked.connect(self.show_target_folder_dlg)
-        self.BtnOutputBrowse.clicked.connect(self.show_output_file_dlg)
+        #self.BtnOutputBrowse.clicked.connect(self.show_output_file_dlg)
         self.BtnClocPathBrowse.clicked.connect(self.show_cloc_path_dlg)
         self.BtnStart.clicked.connect(self.read_info)
         self.BtnExit.clicked.connect(self.close_app)
         self.ChkBoxExtOnly.stateChanged.connect(self.change_ext_only)
+        self.ComboOutputType.currentTextChanged.connect(self.change_combo_output_type)
+
+        self.__combo_output_type = "Excel"
+        self.ComboOutputType.addItem("Excel")
+        self.ComboOutputType.addItem("Word")
+        self._ui_handles["ComboOutputType"] = self.ComboOutputType
 
         self._ui_handles["BtnBrowse"] = self.BtnBrowse
-        self._ui_handles["BtnOutputBrowse"] = self.BtnOutputBrowse
+        #self._ui_handles["BtnOutputBrowse"] = self.BtnOutputBrowse
         self._ui_handles["BtnClocPathBrowse"] = self.BtnClocPathBrowse
         self._ui_handles["BtnStart"] = self.BtnStart
         self._ui_handles["BtnExit"] = self.BtnExit
         self._ui_handles["ChkBoxExtOnly"] = self.ChkBoxExtOnly
 
+        # set initial setting
         self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(
             fir.FileInfo.SOURCE_CODE_EXT)))
         self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(
             fir.FilesInfoReader.SEARCH_TARGET_EXT)))
         self.EditOutput.setText(self._config.get("SETTING", "output_file",fallback="output.xlsx"))
+        self.EditOutput.setEnabled(False)
         self.EditIgnorePattern.setText(self._config.get("SETTING", "ignore_pattern", fallback=fir.FilesInfoReader.IGNORE_SEARCH_PATTERN))
         self.EditTargetFolder.setText(self._config.get("SETTING", "target_folder", fallback=""))
         self.EditClocPath.setText(self._config.get("SETTING", "cloc_path", fallback=""))
+        try:
+            if self._config.get("SETTING", "output_type") == "Word":
+                self.ComboOutputType.setCurrentIndex(1)
+            else:
+                self.ComboOutputType.setCurrentIndex(0)
+        except:
+            self.ComboOutputType.setCurrentIndex(0)
 
         self._ui_handles["EditSourceExtList"]  = self.EditSourceExtList
         #self._ui_handles["EditExtList"]  = self.EditExtList
-        self._ui_handles["EditOutput"]  = self.EditOutput
+        #self._ui_handles["EditOutput"]  = self.EditOutput
         #self._ui_handles["EditIgnorePattern"]  = self.EditIgnorePattern
         self._ui_handles["EditTargetFolder"]  = self.EditTargetFolder
         #self._ui_handles["EditClocPath"]  = self.EditClocPath
@@ -133,9 +150,10 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
         self._config.set("SETTING", "source_ext_list", self.EditSourceExtList.text())
         self._config.set("SETTING", "search_ext_list", self.EditExtList.text())
         self._config.set("SETTING", "output_file", self.EditOutput.text())
+        self._config.set("SETTING", "output_type", str(self.ComboOutputType.currentText()))
         self._config.set("SETTING", "ignore_pattern", self.EditIgnorePattern.text())
         self._config.set("SETTING", "target_folder", self.EditTargetFolder.text())
-        self._config.set("SETTING", "cloc_path", self.EditClocPath.text())
+        self._config.set("SETTING", "cloc_path", self.EditClocPath.text())        
         self._config.write(f)
 
         print("CONFIG saved\n")
@@ -194,6 +212,26 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
             self._ui_handles["EditExtList"] = None
             self.EditExtList.setEnabled(False)
             self._extonly_flag = False
+
+    def change_combo_output_type(self, text):
+        """
+        ComboOutputType 콤보 버튼 이벤트를 처리한다.
+        :param state:
+        :return:
+        """
+        file_name = self.EditOutput.text().strip()
+        extension = os.path.splitext(file_name)[1]
+
+        if text == "Excel":
+            self.__combo_output_type = "Excel"
+            if extension != ".xlsx" :
+                file_name = os.path.splitext(file_name)[0] + ".xlsx"
+        elif text == "Word":
+            self.__combo_output_type = "Word"
+            if extension != ".docx" :
+                file_name = os.path.splitext(file_name)[0] + ".docx"
+
+        self.EditOutput.setText(file_name)
 
     def show_target_folder_dlg(self):
         """
@@ -265,6 +303,13 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
 
         self.fir_handle = FilesInfoReader(hash_method, self._cloc_use_flag)
 
+        if self.__combo_output_type == "Excel":
+            self.fir_handle.set_output_type(OUTPUT_TYPE_EXCEL)
+        elif self.__combo_output_type == "Word":
+            self.fir_handle.set_output_type(OUTPUT_TYPE_WORD)
+        else:
+            self.fir_handle.set_output_type(OUTPUT_TYPE_EXCEL)
+
         self.fir_handle.set_root_path(target_folder)
         if igr_enabled == True:
             self.fir_handle.set_ignore_pattern(self.EditIgnorePattern.text())
@@ -278,7 +323,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
         #start fir.iterate
         self._worker.set_data(self.fir_handle, ext_only, igr_enabled, line_info)
         self._all_disable()
-        self._worker.start()   
+        self._worker.start()
 
     def _all_disable(self):
         for v in self._ui_handles.values():
