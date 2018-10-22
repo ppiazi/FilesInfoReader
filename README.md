@@ -9,6 +9,7 @@
  - beautifulsoup4 : https://www.crummy.com/software/BeautifulSoup/bs4/doc/
  - tqdm : https://tqdm.github.io/
  - lxml : https://lxml.de/
+ - docx-mailmerge : https://github.com/Bouke/docx-mailmerge
  
    아래와 같이 필요한 패키지를 설치할 수 있다.
    pip install -r requirements.txt 
