@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainDlg.ui'
+# Form implementation generated from reading ui file 'fir\qt4\MainDlg.ui'
 #
-# Created: Sun Jul 22 00:00:38 2018
+# Created: Sun Oct 21 15:23:41 2018
 #      by: pyside2-uic 2.0.0 running on PySide2 5.6.0~a1
 #
 # WARNING! All changes made in this file will be lost!
 
-try:
-    from PySide2 import QtCore, QtGui, QtWidgets
-except:
-    from PyQt2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -51,9 +48,9 @@ class Ui_Dialog(object):
         self.EditOutput.setText("")
         self.EditOutput.setObjectName("EditOutput")
         self.LayoutOutput.addWidget(self.EditOutput)
-        self.BtnOutputBrowse = QtWidgets.QPushButton(self.layoutWidget)
-        self.BtnOutputBrowse.setObjectName("BtnOutputBrowse")
-        self.LayoutOutput.addWidget(self.BtnOutputBrowse)
+        self.ComboOutputType = QtWidgets.QComboBox(self.layoutWidget)
+        self.ComboOutputType.setObjectName("ComboOutputType")
+        self.LayoutOutput.addWidget(self.ComboOutputType)
         self.verticalLayout.addLayout(self.LayoutOutput)
         self.LayoutHashMethod = QtWidgets.QHBoxLayout()
         self.LayoutHashMethod.setObjectName("LayoutHashMethod")
@@ -144,8 +141,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QtWidgets.QApplication.translate("Dialog", "FilesInfoReader GUI", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("Dialog", "TargetFolder", None, -1))
         self.BtnBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
-        self.label_3.setText(QtWidgets.QApplication.translate("Dialog", "Output", None, -1))
-        self.BtnOutputBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
+        self.label_3.setText(QtWidgets.QApplication.translate("Dialog", "OutputFile", None, -1))
         self.label_6.setText(QtWidgets.QApplication.translate("Dialog", "Hash", None, -1))
         self.RadBtnCrc32.setText(QtWidgets.QApplication.translate("Dialog", "CRC32", None, -1))
         self.RadBtnMD5.setText(QtWidgets.QApplication.translate("Dialog", "MD5", None, -1))
@@ -160,4 +156,14 @@ class Ui_Dialog(object):
         self.BtnClocPathBrowse.setText(QtWidgets.QApplication.translate("Dialog", "Browse", None, -1))
         self.BtnStart.setText(QtWidgets.QApplication.translate("Dialog", "Start", None, -1))
         self.BtnExit.setText(QtWidgets.QApplication.translate("Dialog", "Exit", None, -1))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
 

@@ -64,7 +64,7 @@
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Output</string>
+         <string>OutputFile</string>
         </property>
        </widget>
       </item>
@@ -76,11 +76,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="BtnOutputBrowse">
-        <property name="text">
-         <string>Browse</string>
-        </property>
-       </widget>
+       <widget class="QComboBox" name="ComboOutputType"/>
       </item>
      </layout>
     </item>
