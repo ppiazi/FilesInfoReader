@@ -16,6 +16,7 @@ limitations under the License.
 """
 from collections import OrderedDict
 import xlsxwriter
+from mailmerge import MailMerge
 
 STDOUT_SEPARATOR_CHAR='|'
 
@@ -75,6 +76,44 @@ class FilesInfoDB:
             row = row + 1
 
         wbk.close()
+
+    def to_word(self, file_name):
+        """
+        Word 파일로 저장한다.
+        """
+        template = "output_word_template.docx"
+
+        document = MailMerge(template)
+
+        # sort db and save into sorted_db
+        sorted_db_list = sorted(sorted(self.__db.items(), key=lambda x: x[0]))
+        sorted_db = OrderedDict(sorted_db_list)
+
+        merge_folder_item = {}
+        for (a_file, a_file_data) in sorted_db.items():
+            merge_item = {}
+            merge_item["SPS_File_Name"] = a_file_data[1][0]
+            merge_item["SPS_File_MTime"] = a_file_data[1][2]
+            merge_item["SPS_File_Hash"] = a_file_data[1][3]
+            merge_item["SPS_File_Size"] = str(a_file_data[1][4])
+            merge_item["SPS_File_LOC"] = str(a_file_data[1][5])
+
+            try:
+                merge_folder_item[a_file_data[1][1]].append(merge_item)
+            except:
+                merge_folder_item[a_file_data[1][1]] = []
+                merge_folder_item[a_file_data[1][1]].append(merge_item)
+
+        all_merge = []
+        for (a_folder, a_merge_data) in merge_folder_item.items():
+            d = {}
+            d["SPS_Folder_Name"] = a_folder
+            d["SPS_File_Name"] = a_merge_data
+            all_merge.append(d)
+
+        document.merge_pages(all_merge)
+
+        document.write(file_name)
 
     def to_stdout(self, file_name):
         """

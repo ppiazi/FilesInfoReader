@@ -33,6 +33,9 @@ IGNORE_SEARCH_PATTERN = "\.git"
 FIELDS_COMULMNS_NORMAL = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
 FIELDS_COMULMNS_CLOC = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount", "Blank", "Comment"]
 
+OUTPUT_TYPE_EXCEL = 0
+OUTPUT_TYPE_WORD = 1
+
 class FilesInfoReader:
     """
     root_path로 지정된 곳의 파일들을 읽어 저장하고, 원하는 포맷으로 파일을 생성하기 위한 클래스.
@@ -60,7 +63,12 @@ class FilesInfoReader:
         logging.basicConfig(level=logging.WARNING)
         self.__logger = logging.getLogger("FilesInfoReader")
         self.__igr_pattern = IGNORE_SEARCH_PATTERN
+
+        self.__output_type = OUTPUT_TYPE_EXCEL
     
+    def set_output_type(self, output_type):
+        self.__output_type = output_type
+
     def get_file_info_db(self):
         return self.__file_info_db
 
@@ -112,7 +120,7 @@ class FilesInfoReader:
         sizetotal = 0
         sizetotal = self._get_total_size()
 
-        self._iterate_all_files(sizetotal, igr_enabled, re_igr_pattern, ext_only, line_info)
+        return self._iterate_all_files(sizetotal, igr_enabled, re_igr_pattern, ext_only, line_info)
 
     def _iterate_all_files(self, sizetotal, igr_enabled, re_igr_pattern, ext_only, line_info):
         with tqdm.tqdm(total = sizetotal, unit='B', unit_scale=True, unit_divisor=1024) as pbar:
@@ -185,6 +193,8 @@ class FilesInfoReader:
                     self.__file_info_db.insert(full_file_name,
                                             [file_name, folder_name, modified_time_str, check_sum,
                                                 file_size, source_code_line_count, source_code_comment_count, source_code_blank_count])
+        
+        return self.__file_info_db
 
     def _get_total_size(self):
         sizetotal = 0
@@ -199,7 +209,7 @@ class FilesInfoReader:
 
     def save(self, file_name):
         """
-        Save data as a csv fie
+        Save data as a excel file(or a word file)
 
         :param file_name:
         :return:
@@ -209,7 +219,12 @@ class FilesInfoReader:
             self.__file_info_db.to_stdout(file_name)
 
         extension = os.path.splitext(file_name)[1]
-        if extension != ".xlsx" :
-            file_name = file_name + ".xlsx"
 
-        self.__file_info_db.to_csv(file_name)
+        if self.__output_type != OUTPUT_TYPE_WORD:
+            if extension != ".xlsx" :
+                file_name = file_name + ".xlsx"
+            self.__file_info_db.to_csv(file_name)
+        else:
+            if extension != ".docx" :
+                file_name = file_name + ".docx"
+            self.__file_info_db.to_word(file_name)
