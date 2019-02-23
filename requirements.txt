@@ -3,3 +3,4 @@ XlsxWriter
 beautifulsoup4
 tqdm
 lxml
+docx-mailmerge
