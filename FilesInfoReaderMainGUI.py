@@ -96,7 +96,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
         self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(
             fir.FileInfo.SOURCE_CODE_EXT)))
         self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(
-            fir.FilesInfoReader.SEARCH_TARGET_EXT)))
+            fir.FilesInfoReader.FilesInfoReader.SEARCH_TARGET_EXT)))
         self.EditOutput.setText(self._config.get("SETTING", "output_file",fallback="output.xlsx"))
         self.EditOutput.setEnabled(False)
         self.EditIgnorePattern.setText(self._config.get("SETTING", "ignore_pattern", fallback=fir.FilesInfoReader.IGNORE_SEARCH_PATTERN))
@@ -278,7 +278,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
             except:
                 self._warning("Invalid ext list")
                 return
-            FilesInfoReader.SEARCH_TARGET_EXT = ext_list
+            #FilesInfoReader.SEARCH_TARGET_EXT = ext_list[:]
 
         # check ignore pattern option
         igr_enabled = self._igr_enabled_flag
@@ -313,6 +313,8 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
         self.fir_handle.set_root_path(target_folder)
         if igr_enabled == True:
             self.fir_handle.set_ignore_pattern(self.EditIgnorePattern.text())
+        if ext_only == True:
+            self.fir_handle.set_SEARCH_TARGET_EXT(ext_list[:])
 
         if self._cloc_use_flag == False:
             line_info = None

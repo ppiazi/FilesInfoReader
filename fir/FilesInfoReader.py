@@ -27,7 +27,6 @@ from fir.ClocXmlParser import ClocXmlParser
 
 __author__ = 'ppiazi'
 
-SEARCH_TARGET_EXT = fir.FileInfo.SOURCE_CODE_EXT
 IGNORE_SEARCH_PATTERN = "\.git"
 
 FIELDS_COMULMNS_NORMAL = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
@@ -37,10 +36,13 @@ OUTPUT_TYPE_EXCEL = 0
 OUTPUT_TYPE_WORD = 1
 
 class FilesInfoReader:
+    SEARCH_TARGET_EXT = fir.FileInfo.SOURCE_CODE_EXT[:]
+
     """
     root_path로 지정된 곳의 파일들을 읽어 저장하고, 원하는 포맷으로 파일을 생성하기 위한 클래스.
     """
     def __init__(self, hash_code="crc32", cloc_use=False):
+
         self.cloc_use = cloc_use
         if self.cloc_use == False:
             selected_columns = FIELDS_COMULMNS_NORMAL
@@ -65,7 +67,10 @@ class FilesInfoReader:
         self.__igr_pattern = IGNORE_SEARCH_PATTERN
 
         self.__output_type = OUTPUT_TYPE_EXCEL
-    
+
+    def set_SEARCH_TARGET_EXT(self, ste):
+        FilesInfoReader.SEARCH_TARGET_EXT = ste[:]
+
     def set_output_type(self, output_type):
         self.__output_type = output_type
 
@@ -148,7 +153,7 @@ class FilesInfoReader:
                         self.__logger.info("\tPath Pattern Ignored : %s" % root)
                         continue
 
-                if ext_only and file_info.get_file_ext().lower() not in SEARCH_TARGET_EXT:
+                if ext_only and file_info.get_file_ext().lower() not in FilesInfoReader.SEARCH_TARGET_EXT:
                     self.__logger.info("\tExtension Ignored : %s" % afile)
                     continue
 

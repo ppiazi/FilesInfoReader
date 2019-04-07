@@ -19,6 +19,7 @@ import os
 import sys
 
 from fir import __version__
+from fir import FileInfo
 from fir.FilesInfoReader import FilesInfoReader
 
 def print_usage():
@@ -69,8 +70,8 @@ if __name__ == "__main__":
             p_sourcecode_only = True
         elif op == "-a":
             source_ext = "." + p
-            fir.FileInfo.SOURCE_CODE_EXT.append(source_ext)
-            print(fir.FileInfo.SOURCE_CODE_EXT)
+            FileInfo.SOURCE_CODE_EXT.append(source_ext)
+            print(FileInfo.SOURCE_CODE_EXT)
         elif op == "-c":
             p_use_cloc = True
             p_use_cloc_path = p
