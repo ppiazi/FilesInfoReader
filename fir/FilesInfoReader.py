@@ -36,7 +36,7 @@ OUTPUT_TYPE_EXCEL = 0
 OUTPUT_TYPE_WORD = 1
 
 class FilesInfoReader:
-    SEARCH_TARGET_EXT = fir.FileInfo.SOURCE_CODE_EXT[:]
+    SEARCH_TARGET_EXT = fir.FileInfo.FileInfo.SOURCE_CODE_EXT[:]
 
     """
     root_path로 지정된 곳의 파일들을 읽어 저장하고, 원하는 포맷으로 파일을 생성하기 위한 클래스.

@@ -24,7 +24,6 @@ __author__ = 'ppiazi'
 
 FILE_TYPE_NORMAL = 0
 FILE_TYPE_SOURCECODE = 1
-SOURCE_CODE_EXT = [".c", ".cpp", ".cxx", ".h", ".hpp", ".py", ".cs", ".java", ".asm", ".inl", ".hh"]
 HASH_CODE_CRC32 = 0
 HASH_CODE_MD5 = 1
 HASH_CODE_SHA1 = 2
@@ -33,6 +32,9 @@ class FileInfo:
     """
     File 하나에 대한 정보를 저장하는 클래스
     """
+
+    SOURCE_CODE_EXT = [".c", ".cpp", ".cxx", ".h", ".hpp", ".py", ".cs", ".java", ".asm", ".inl", ".hh"]
+
     def __init__(self, full_file):
         self.__full_file = full_file
         self.__file_info = {}
@@ -57,7 +59,7 @@ class FileInfo:
         """
         self.__file_ext = os.path.splitext(self.__full_file)[-1]
 
-        if self.__file_ext.lower() in SOURCE_CODE_EXT:
+        if self.__file_ext.lower() in FileInfo.SOURCE_CODE_EXT:
             self.__file_type = FILE_TYPE_SOURCECODE
         else:
             self.__file_type = FILE_TYPE_NORMAL

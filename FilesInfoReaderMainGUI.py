@@ -94,7 +94,7 @@ class FilesInfoReaderMainGUI(QtWidgets.QDialog, Ui_Dialog):
 
         # set initial setting
         self.EditSourceExtList.setText(self._config.get("SETTING", "source_ext_list", fallback=",".join(
-            fir.FileInfo.SOURCE_CODE_EXT)))
+            fir.FileInfo.FileInfo.SOURCE_CODE_EXT)))
         self.EditExtList.setText(self._config.get("SETTING", "search_ext_list", fallback=",".join(
             fir.FilesInfoReader.FilesInfoReader.SEARCH_TARGET_EXT)))
         self.EditOutput.setText(self._config.get("SETTING", "output_file",fallback="output.xlsx"))

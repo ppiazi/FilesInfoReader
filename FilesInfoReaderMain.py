@@ -70,8 +70,8 @@ if __name__ == "__main__":
             p_sourcecode_only = True
         elif op == "-a":
             source_ext = "." + p
-            FileInfo.SOURCE_CODE_EXT.append(source_ext)
-            print(FileInfo.SOURCE_CODE_EXT)
+            FileInfo.FileInfo.SOURCE_CODE_EXT.append(source_ext)
+            print(FileInfo.FileInfo.SOURCE_CODE_EXT)
         elif op == "-c":
             p_use_cloc = True
             p_use_cloc_path = p
