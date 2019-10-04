@@ -30,7 +30,7 @@ __author__ = 'ppiazi'
 IGNORE_SEARCH_PATTERN = "\.git"
 
 FIELDS_COMULMNS_NORMAL = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount"]
-FIELDS_COMULMNS_CLOC = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount", "Blank", "Comment"]
+FIELDS_COMULMNS_CLOC = ["FileName", "Folder", "MTime", "CheckSum", "Size", "LineCount", "Comment", "Blank"]
 
 OUTPUT_TYPE_EXCEL = 0
 OUTPUT_TYPE_WORD = 1
